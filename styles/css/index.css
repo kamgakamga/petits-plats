@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 100px;
+}
+
+.form-inline {
+  width: 100%;
+}
+
+.input-search {
+  width: 100%;
+}
+
+.plat-image {
+  height: 150px;
+  background-color: #C7BEBE;
+}
+
+.plats-title {
+  display: inline-block;
+}
+
+.plats-ingredients {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+.card-body {
+  background-color: #E7E7E7;
+}
+
+.plats-descriptions {
+  font-size: 10px;
+}
+
+li {
+  list-style: none;
+  font-size: 10px;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=index.css.map */

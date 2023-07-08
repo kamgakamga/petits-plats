@@ -1,0 +1,59 @@
+$couleur1:#E7E7E7;
+$couleur2:#C7BEBE;
+
+
+@mixin text-overflow-elipsis{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+}
+
+
+*{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+}
+.header{
+        height: 100px;
+}
+
+.form-inline{
+        width: 100%;
+}
+.input-search{
+        width: 100%;
+}
+
+.plat-image{
+    height: 150px; 
+    background-color: $couleur2;   
+}
+
+.plats-title{
+        // background-color: rgb(220, 51, 189);
+        display: inline-block;
+}
+
+.plats-ingredients{
+        // background-color: aqua;
+        //display: inline-block;
+        @include text-overflow-elipsis;
+        font-size: 10px;
+}
+.card-body{
+      background-color: $couleur1;  
+}
+
+.plats-descriptions{
+//      @include text-overflow-elipsis;
+     font-size: 10px;
+}
+
+li{
+        list-style: none;
+        font-size: 10px;
+}
+.dropdown{
+        display: inline-block;
+}
