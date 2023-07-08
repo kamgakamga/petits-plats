@@ -22,7 +22,7 @@ export function buildCardPlats(element) {
 
    export function buildCardPlat(element,ingredientItem){
  let cardElement = document.createElement("div");
-   cardElement.classList.add("card", "col-4", "p-3", "m-3");
+   cardElement.classList.add("card", "col-4", "border-0", "p-3", "m-0");
    cardElement.innerHTML =`<div class="plat-image">
 
                                   </div>

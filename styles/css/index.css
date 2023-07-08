@@ -29,7 +29,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .card-body {
@@ -37,12 +37,11 @@
 }
 
 .plats-descriptions {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 li {
   list-style: none;
-  font-size: 10px;
 }
 
 .dropdown {

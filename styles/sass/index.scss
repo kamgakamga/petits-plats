@@ -39,7 +39,7 @@ $couleur2:#C7BEBE;
         // background-color: aqua;
         //display: inline-block;
         @include text-overflow-elipsis;
-        font-size: 10px;
+        font-size: 12px;
 }
 .card-body{
       background-color: $couleur1;  
@@ -47,12 +47,11 @@ $couleur2:#C7BEBE;
 
 .plats-descriptions{
 //      @include text-overflow-elipsis;
-     font-size: 10px;
+     font-size: 12px;
 }
 
 li{
         list-style: none;
-        font-size: 10px;
 }
 .dropdown{
         display: inline-block;
