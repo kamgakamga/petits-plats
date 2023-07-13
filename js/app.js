@@ -1,6 +1,30 @@
 import { buildSearchForm,buildCardPlat,buildCardPlats,buildDropDown } from "./helper.js";
 
 
+
+var tab_ingredients = [];
+var tab_ustensiles = [];
+var tab_appareils = [];
+recipes.forEach(elt => {
+  elt.ingredients.forEach(ing =>{
+    if (!tab_ingredients.includes(ing.ingredient)) {
+        tab_ingredients.push(ing.ingredient);}
+  })
+  elt.ustensils.forEach(ust =>{
+    if (!tab_ustensiles.includes(ust)) {
+      tab_ustensiles.push(ust);}
+  })
+  if (!tab_appareils.includes(elt.appliance)) {
+    tab_appareils.push(elt.appliance);}
+}); 
+
+console.log("=============");
+console.log(tab_ingredients);
+console.log("**************");
+console.log(tab_ustensiles);
+console.log("......................");
+console.log(tab_appareils);
+
 // Construction de la structure de base de ma page index.
 const body = document.body;
 const header = document.createElement("header");

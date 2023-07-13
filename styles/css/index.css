@@ -48,4 +48,8 @@ li {
   display: inline-block;
 }
 
+input:placeholder {
+  color: aliceblue;
+}
+
 /*# sourceMappingURL=index.css.map */
