@@ -2,21 +2,34 @@ export function buildSearchForm(){
       let main = document.querySelector("main");
       let search = document.createElement("div");
 
-        search.innerHTML=`
-        <div class="mb-2">
-           <div class="">
-                <input type="text" class="bg-light form-control input-search" placeholder="Recherche une recette"><span class="input-group"><i class="far fa-search "></span></i>
-                </div>
-        </div>`
+        // search.innerHTML=`
+        // <div class="mb-3 row mt-3">
+        //         <input type="text" class="bg-light form-control input-search col-11 border-l-0" placeholder="Recherche une recette">
+        //         <div class="input-group-prepend">
+        //           <button class="btn bg-light" type="button">
+        //             <i class="fa fa-search"></i>
+        //           </button>
+        //         </div>
+        // </div>`
+        search.innerHTML=` <div class="input-group mb-3 mt-3">
+                              <input type="text" class="form-control bg-light input-search" placeholder="Recherche une recette">
+                              <div class="input-group-prepend">
+                                <button class="btn bg-light" type="button">
+                                  <i class="fa fa-search"></i>
+                                </button>
+                              </div>
+                           </div>`
         main.appendChild(search);
 }
 
 export function buildCardPlats(element) {
    let ingredientItem = "";
+   console.log(element);
+   console.log(element.ingredients);
    for(let i = 0; i< element.ingredients.length; i++) {
       ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+"</li>";
     }
-    console.log(ingredientItem);
+    // console.log(ingredientItem);
     buildCardPlat(element,ingredientItem);
    }
 
@@ -51,7 +64,7 @@ export function buildCardPlats(element) {
             let li = document.createElement("li");
             li.textContent = `${ingredients[index].ingredient}`;
             document.querySelector("ul").appendChild(li);
-            console.log(ingredients[index].ingredient);
+            // console.log(ingredients[index].ingredient);
          }  
 }
 
