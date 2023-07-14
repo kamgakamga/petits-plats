@@ -24,8 +24,8 @@ export function buildSearchForm(){
 
 export function buildCardPlats(element) {
    let ingredientItem = "";
-   console.log(element);
-   console.log(element.ingredients);
+  //  console.log(element);
+  //  console.log(element.ingredients);
    for(let i = 0; i< element.ingredients.length; i++) {
       ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+"</li>";
     }
@@ -68,38 +68,43 @@ export function buildCardPlats(element) {
          }  
 }
 
-export function buildDropDown(){
+export function buildDropDown(ingredients){
     const dropDownSection = document.createElement("section");
+    let  ingredientItem ="";
+
+    for(let i = 0; i< ingredients.length; i++) {
+      ingredientItem += "<li class=\"ingredient-item\">"+ingredients[i]+"</li>";
+    }
     dropDownSection.classList.add("mb-2");
-          dropDownSection.innerHTML=` <div class="dropdown">
-          <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            Ingredients
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
-  <div class="dropdown">
-          <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Appareils
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
-       <div class="dropdown">
-          <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            Ustensiles
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          dropDownSection.innerHTML=`<div class="row m-1">
+                <div class="bg-primary" style="max-width: 500px;">
+                        <div class="row" style="max-width: 500px;">
+                            <input type="text" class="form-control bg-primary ml-3" style="width: 100%;" placeholder="Rechercher un ingrédient">
+                        </div>
+                        <ul class="ingredient-items">
+                              ${ingredientItem}
+                        </ul>
+                </div>
+              <div class="dropdown ml-2 mr-2">
+                      <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      Appareils
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+              </div>
+              <div class="dropdown ml-2 mr-2">
+                  <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ustensiles
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </div>
         </div>`;
 
         document.querySelector("main").appendChild(dropDownSection);

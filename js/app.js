@@ -44,7 +44,7 @@ header.classList.add("mb-2","mt-2");
 header.classList.add("header");
 header.innerHTML=`<img src="img/15973932905401_logo.png" class="header" alt="logo les petits plats">`
 buildSearchForm();
-buildDropDown();
+buildDropDown(tab_ingredients);
 let cardSection = document.createElement("section");
 main.appendChild(cardSection);
 let rows = document.createElement("div");
