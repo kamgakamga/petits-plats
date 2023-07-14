@@ -48,22 +48,52 @@ li {
   display: inline-block;
 }
 
-input:placeholder {
-  color: aliceblue;
+.ingredients__search__input::placeholder {
+  margin-left: 5px;
+  color: rgb(200, 202, 204);
 }
 
-.ingredient-items {
+.ingredients__search {
+  display: flex;
+}
+.ingredients__search__input {
+  caret-color: #E7E7E7;
+  color: #E7E7E7;
+}
+.ingredients__search__icon {
+  color: #E7E7E7;
+  font-size: 20px;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.filtre .ingredients {
+  display: none;
+  height: 350px;
+  overflow: scroll;
+  max-width: 45%;
+}
+.filtre .ingredients__contain {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.ingredient-items .ingredient-item {
+.filtre .ingredients__contain__item {
   padding: 1px;
   width: 32%;
   margin: 1 2px 1px 2px;
-  font-size: 10px;
-  color: white;
+  font-size: 14px;
+  color: rgb(254, 253, 253);
+  cursor: pointer;
+}
+
+.paragraphe-filter {
+  display: inline-block;
+  margin-right: 2px;
+  border-radius: 5px;
+  padding: 0 2px 0 2px;
+  color: FFFFFF;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -56,22 +56,68 @@ li{
 .dropdown{
         display: inline-block;
 }
-input:placeholder{
-        color: aliceblue;
+.ingredients__search__input::placeholder{
+        margin-left: 5px;
+        color: rgb(200, 202, 204);
 }
 
-.ingredient-items{
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row; 
-        flex-wrap: wrap;
-        .ingredient-item{
-                padding: 1px;
-                width: 32%;
-                margin: 1 2px 1px 2px;
-                // background-color: aqua;
-                font-size: 10px;
-                color: white;
+.ingredients__search{
+        &__input{
+                caret-color: #E7E7E7;
+                color: #E7E7E7;
         }
-
+        &__icon{
+                color: #E7E7E7;
+                // background-color: black;
+                font-size: 20px;
+                transform: rotate(180deg);
+                cursor: pointer;
+        }
+        display: flex;
 }
+
+.filtre{
+        .ingredients{
+            
+                &__contain{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: row; 
+                        flex-wrap: wrap;
+                        &__item{
+                                padding: 1px;
+                                width: 32%;
+                                margin: 1 2px 1px 2px;
+                                // background-color: aqua;
+                                font-size: 14px;
+                                color: rgb(254, 253, 253);
+                                cursor: pointer;
+                        }
+                }
+                display: none;
+                height: 350px;
+                overflow: scroll;
+                max-width: 45%;
+        }
+        
+        
+//   position: absolute;
+}
+
+
+// .ingredientss{
+//         display: block;
+// }
+
+
+.paragraphe-filter{
+        display: inline-block;
+        margin-right: 2px;
+        border-radius: 5px;
+        padding: 0 2px 0 2px;
+        color: FFFFFF;
+}
+
+// .paragraphe-filter:nth-child(1){
+//         font-size: 30px;;
+// }

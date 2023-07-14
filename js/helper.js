@@ -60,7 +60,7 @@ export function buildCardPlats(element) {
 
  function buildIngredientsPlat(ingredients){
          for (let index = 0; index < ingredients.length; index++) {
-            console.log(ingredients[index]);
+      //      console.log(ingredients[index]);
             let li = document.createElement("li");
             li.textContent = `${ingredients[index].ingredient}`;
             document.querySelector("ul").appendChild(li);
@@ -68,21 +68,41 @@ export function buildCardPlats(element) {
          }  
 }
 
+// export function buildIngredientsList(items) {
+//   let  ingredientItem ="";
+//     for(let i = 0; i< items.length; i++) {
+//   //    console.log(ingredients[i].length);
+//       ingredientItem += "<li class=\"ingredients__contain__item\">"+items[i]+"</li>";
+//     }
+//     console.log("okooooooo");
+// }
+
 export function buildDropDown(ingredients){
     const dropDownSection = document.createElement("section");
     let  ingredientItem ="";
-
     for(let i = 0; i< ingredients.length; i++) {
-      ingredientItem += "<li class=\"ingredient-item\">"+ingredients[i]+"</li>";
+  //    console.log(ingredients[i].length);
+      ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
     dropDownSection.classList.add("mb-2");
-          dropDownSection.innerHTML=`<div class="row m-1">
-                <div class="bg-primary" style="max-width: 500px;">
-                        <div class="row" style="max-width: 500px;">
-                            <input type="text" class="form-control bg-primary ml-3" style="width: 100%;" placeholder="Rechercher un ingrédient">
+          dropDownSection.innerHTML=`<div class="row m-1  filtre">
+          <div class="dropdown ml-2 mr-2 ingredientss">
+          <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Ingredients
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+         </div>
+        <div class="bg-primary ingredients">
+                        <div class="row input-group ingredients__search">
+                            <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
+                            <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
                         </div>
-                        <ul class="ingredient-items">
-                              ${ingredientItem}
+                        <ul class="ingredients__contain">
+                               ${ingredientItem}
                         </ul>
                 </div>
               <div class="dropdown ml-2 mr-2">
@@ -108,4 +128,37 @@ export function buildDropDown(ingredients){
         </div>`;
 
         document.querySelector("main").appendChild(dropDownSection);
+}
+
+export function buildNewTags(tag) {
+        
+  // <p>
+  //    <span>${tag}</span>
+  //    <span><i class="far fa-times"></i></span>
+  // </p>
+        
+}
+
+
+export function buildArrayTags(event, arrayTags) {
+  if (!arrayTags.includes(event.target.textContent)) {
+    arrayTags.push(event.target.textContent);
+  }
+  return arrayTags;
+}
+
+export function buildTagsList(arrayTagsResult) {
+  console.log("Construction des tags en cours...");
+  if (arrayTagsResult.length > 1) {
+    arrayTagsResult.forEach((tag) => {
+       const pFilter = document.createElement('p');
+       pFilter.classList.add("bg-primary","paragraphe-filter");
+       pFilter.innerHTML =` <span>${tag}</span>
+                            <span>
+                                 <i class="fas fa-times"></i>
+                            </span>`
+    document.querySelector(".filter-section").appendChild(pFilter);
+    });
+   }
+   console.log("fin de la construction des tags...");
 }
