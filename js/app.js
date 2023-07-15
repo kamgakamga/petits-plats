@@ -179,3 +179,7 @@ closeIngredient.addEventListener('click',(event) => {
   document.querySelector(".ingredients").style.display = 'none';
   document.querySelector(".ingredientss").style.display = 'block';
  });
+
+
+ let closeTags = document.querySelectorAll('.close-tags');
+ console.log("=======>",closeTags);

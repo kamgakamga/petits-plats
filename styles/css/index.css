@@ -17,7 +17,7 @@
 }
 
 .plat-image {
-  height: 150px;
+  height: 180px;
   background-color: #C7BEBE;
 }
 
@@ -26,18 +26,23 @@
 }
 
 .plats-ingredients {
-  overflow: hidden;
+  background-color: rgb(187, 255, 0);
+  overflow: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 12px;
+  height: 100%;
 }
 
 .card-body {
   background-color: #E7E7E7;
+  height: 180px;
 }
 
 .plats-descriptions {
   font-size: 12px;
+  background-color: aqua;
+  height: 100%;
 }
 
 li {
@@ -92,8 +97,15 @@ li {
   display: inline-block;
   margin-right: 2px;
   border-radius: 5px;
-  padding: 0 2px 0 2px;
-  color: FFFFFF;
+  padding: 0 3px 0 3px;
+  color: #FFFFFF;
+}
+.paragraphe-filter span {
+  margin: 2px 2px 2px 2px;
+}
+
+.close-tags {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=index.css.map */

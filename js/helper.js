@@ -24,10 +24,12 @@ export function buildSearchForm(){
 
 export function buildCardPlats(element) {
    let ingredientItem = "";
-  //  console.log(element);
+   
   //  console.log(element.ingredients);
    for(let i = 0; i< element.ingredients.length; i++) {
-      ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+"</li>";
+    console.log(element.ingredients[i].unit);
+      ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+": "+element.ingredients[i].quantity+"</li>";
+      // ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+": "+element.ingredients[i].quantity === undefined ? :element.ingredients[i].quantity +" "+element.ingredients[i].unit === undefined? "":element.ingredients[i].unit+"</li>";
     }
     // console.log(ingredientItem);
     buildCardPlat(element,ingredientItem);
@@ -38,8 +40,8 @@ export function buildCardPlats(element) {
    cardElement.classList.add("card", "col-4", "border-0", "p-3", "m-0");
    cardElement.innerHTML =`<div class="plat-image">
 
-                                  </div>
-                                 <div class="card-body">
+                            </div>
+                            <div class="card-body">
                                        <div class="card-title-time row">
                                              <p class="col-9 plats-title">${element.name}</p>
                                              <p class="col-3 plats-ingredients">
@@ -49,12 +51,12 @@ export function buildCardPlats(element) {
                                        <div class="card-ingredients-description row">
                                              <div class="col-6 plats-ingredients">
                                                    <ul class="main-ingerdients">
-                                                            ${ingredientItem}
+                                                            ${ingredientItem+ "" } 
                                                    </ul>
                                              </div>
                                              <p class="col-6 plats-descriptions">${element.description}</p>
                                        </div>
-                                  </div>`;
+                            </div>`;
   document.querySelector(".rowcard").appendChild(cardElement);
  }
 
@@ -150,12 +152,13 @@ export function buildArrayTags(event, arrayTags) {
 export function buildTagsList(arrayTagsResult) {
   console.log("Construction des tags en cours...");
   if (arrayTagsResult.length > 1) {
+    document.querySelector(".filter-section").innerHTML ='';
     arrayTagsResult.forEach((tag) => {
        const pFilter = document.createElement('p');
        pFilter.classList.add("bg-primary","paragraphe-filter");
        pFilter.innerHTML =` <span>${tag}</span>
                             <span>
-                                 <i class="fas fa-times"></i>
+                                 <i class="fas fa-times close-tags"></i>
                             </span>`
     document.querySelector(".filter-section").appendChild(pFilter);
     });

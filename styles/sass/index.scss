@@ -3,7 +3,7 @@ $couleur2:#C7BEBE;
 
 
 @mixin text-overflow-elipsis{
-        overflow: hidden;
+        overflow: auto;
         text-overflow: ellipsis;
         white-space: nowrap;
 }
@@ -26,7 +26,7 @@ $couleur2:#C7BEBE;
 }
 
 .plat-image{
-    height: 150px; 
+    height: 180px; 
     background-color: $couleur2;   
 }
 
@@ -36,18 +36,22 @@ $couleur2:#C7BEBE;
 }
 
 .plats-ingredients{
-        // background-color: aqua;
+         background-color: rgb(187, 255, 0);
         //display: inline-block;
         @include text-overflow-elipsis;
         font-size: 12px;
+       height: 100%;
 }
 .card-body{
       background-color: $couleur1;  
+      height: 180px;
 }
 
 .plats-descriptions{
 //      @include text-overflow-elipsis;
      font-size: 12px;
+     background-color: aqua;
+     height: 100%;
 }
 
 li{
@@ -114,10 +118,17 @@ li{
         display: inline-block;
         margin-right: 2px;
         border-radius: 5px;
-        padding: 0 2px 0 2px;
-        color: FFFFFF;
+        padding: 0 3px 0 3px;
+        color: #FFFFFF;
+        span{
+                margin: 2px 2px 2px 2px;
+        }
 }
 
 // .paragraphe-filter:nth-child(1){
 //         font-size: 30px;;
 // }
+
+.close-tags{
+        cursor: pointer;
+}
