@@ -40,7 +40,7 @@ $couleur2:#C7BEBE;
         //display: inline-block;
         @include text-overflow-elipsis;
         font-size: 12px;
-       height: 100%;
+        height: 100%;
 }
 .card-body{
       background-color: $couleur1;  
