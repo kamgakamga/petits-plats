@@ -29,7 +29,7 @@ export function buildCardPlats(element) {
   //  console.log(element.ingredients);
    for(let i = 0; i< element.ingredients.length; i++) {
     // console.log(element.ingredients[i].unit);
-      ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+": "+element.ingredients[i].quantity+"</li>";
+      ingredientItem += "<li class=\"\">"+element.ingredients[i].ingredient+": "+(element.ingredients[i].quantity ? element.ingredients[i].quantity : '')+(element.ingredients[i].unit ? element.ingredients[i].unit : '')+"</li>";
       // ingredientItem += "<li class=\"photographe__detail__container__tag__item\">"+element.ingredients[i].ingredient+": "+element.ingredients[i].quantity === undefined ? :element.ingredients[i].quantity +" "+element.ingredients[i].unit === undefined? "":element.ingredients[i].unit+"</li>";
     }
     // console.log(ingredientItem);
@@ -188,6 +188,5 @@ export function searchAndBuildPlats(event) {
 }else{
  //location.reload();
  for (let index = 0; index < recipes.length; index++) {
-  // rows.innerHTML="";
-  buildCardPlats(recipes[index]);   }
+ buildCardPlats(recipes[index]);   }
 }}
