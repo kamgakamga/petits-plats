@@ -113,28 +113,25 @@ ingredientsSearch.addEventListener('input', function() {
     const ingredientSearchTerm = ingredientsSearch.value.toLowerCase();
     // Effectuez la recherche en utilisant les données appropriées (par exemple, un tableau de résultats préexistant)
     if(ingredientSearchTerm.length >= 3 ){
+
         ingredientsResults.push(tab_ingredients.filter(item => item.toLowerCase().includes(ingredientSearchTerm)));
-       //   rows.innerHTML="";
-          // console.log('tableau resultat=>',searchResults);
-          // for (let index = 0; index < searchResults.length; index++) {
-          //   let elts = searchResults[index];
-          //   for (let i = 0; i < elts.length; i++) {
-   //  console.log(ingredientsResults);
-              let ul = document.querySelector(".ingredients__contain");
-              ul.innerHTML ="";
-            //  console.log("vidage de la liste des ingredients ok");
-               buildDropDown(ingredientsResults);
-             // buildIngredientsList(ingredientsResults);
-            //  buildCardPlats(elts[i]); 
-            //  console.log('id=>',elts[i].id);
-            //  console.log('name=>',elts[i].name);}
+       
+        console.log(ingredientsResults);
+
+        let response = [];
+          
+      ingredientsResults[0].forEach(res  => {console.log("resultat",res);
+      response = recipes.filter((item)=>item.name.toLowerCase().includes(res.toLowerCase()) 
+        || item.description.toLowerCase().includes(res.toLowerCase()))
+     });
+
+      console.log(response);
+         rows.innerHTML="";
+         response.forEach(e =>buildCardPlats(e));  
+         let ul = document.querySelector(".ingredients__contain");
      }else{
-   //location.reload();
-   //for (let index = 0; index < recipes.length; index++) {
-    // rows.innerHTML="";
-    // console.log("je suis entrer dans le else des filtres.");
-    buildDropDown(tab_ingredients);  
-   }
+         recipes.forEach(e =>buildCardPlats(e));
+     }
   });
 
 
@@ -151,6 +148,7 @@ ingredientsSearch.addEventListener('input', function() {
 const itemFilters = document.querySelectorAll('.ingredients__contain__item');
 var arrayTags = [];
 var arrayTagsResult = [];
+var temp = [];
 // console.log(itemFilters);
 itemFilters.forEach((itemFilter) => {
   itemFilter.addEventListener('click', (event) => { 
@@ -162,11 +160,13 @@ itemFilters.forEach((itemFilter) => {
         
          for (let index = 0; index < arrayTagsResult.length; index++) {
           const element = arrayTagsResult[index];
-          rows.innerHTML="";
-          recipes.filter((item)=>item.name.toLowerCase().includes(element.toLowerCase()) 
-          || item.description.toLowerCase().includes(element.toLowerCase())).forEach(e =>buildCardPlats(e))
+          // rows.innerHTML="";
+          temp = recipes.filter((item)=>item.name.toLowerCase().includes(element.toLowerCase()) 
+          || item.description.toLowerCase().includes(element.toLowerCase()));
          }
-      
+         console.log(temp);
+         rows.innerHTML="";
+         temp.forEach(e =>buildCardPlats(e));
           closeTags = document.querySelectorAll(".close-tags");
           
           closeTags.forEach((closeTag) =>{
@@ -177,8 +177,7 @@ itemFilters.forEach((itemFilter) => {
                if (index > -1) {
                 arrayTagsResult.splice(index, 1);
                 console.log("suppression effectué avec succes !!!");
-              }
-              arrayTagsResult = buildArrayTags(arrayTagsResult); 
+                buildTagsList(arrayTagsResult); }
               });
           } );
          
