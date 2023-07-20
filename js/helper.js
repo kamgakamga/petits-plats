@@ -40,7 +40,7 @@ export function buildCardPlats(element) {
 
    export function buildCardPlat(element,ingredientItem){
  let cardElement = document.createElement("div");
-   cardElement.classList.add("card", "col-4", "border-0", "p-1", "m-0");
+   cardElement.classList.add("card", "col-4", "border-0", "p-2", "m-0");
    cardElement.innerHTML =`<div class="plat-image">
 
                             </div>
@@ -89,8 +89,8 @@ export function buildDropDown(ingredients){
   //    console.log(ingredients[i].length);
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
-    dropDownSection.classList.add("mb-2");
-          dropDownSection.innerHTML=`<div class="row m-1  filtre">
+    dropDownSection.classList.add('mb-2','ml-1');
+          dropDownSection.innerHTML=`<div class="row filtre">
         <div class="dropdown ml-2 mr-2 ingredientss">
               <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                    Ingredients
