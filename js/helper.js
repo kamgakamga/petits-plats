@@ -190,3 +190,42 @@ export function searchAndBuildPlats(event) {
  for (let index = 0; index < recipes.length; index++) {
  buildCardPlats(recipes[index]);   }
 }}
+
+export function cardPlat(tabRecette){
+  tabRecette.forEach((element)=>{buildCardPlats(element);});
+}
+export function getAllIngredients(recettes) {
+  let tab_ingredients = new Array;
+  recettes.forEach(elt => {
+    elt.ingredients.forEach(ing =>{
+      if (!tab_ingredients.includes(ing.ingredient)) {
+          tab_ingredients.push(ing.ingredient);}
+    })})
+
+    return tab_ingredients;
+}
+
+
+
+
+export function getAllAppareils(recettes) {
+  let tab_appareils = [];
+  recettes.forEach(elt => {
+    if (!tab_appareils.includes(elt.appliance)) {
+      tab_appareils.push(elt.appliance);}
+  }); 
+  return tab_appareils;
+}
+
+
+export function getAllUstensils(recettes) {
+     
+    let tab_ustensiles = [];
+    recettes.forEach(elt => {
+    elt.ustensils.forEach(ust =>{
+      if (!tab_ustensiles.includes(ust)) {
+        tab_ustensiles.push(ust);}
+    });}) 
+
+  return tab_ustensiles;
+}

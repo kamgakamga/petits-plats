@@ -1,4 +1,8 @@
-import { buildSearchForm, buildCardPlat, buildCardPlats, buildDropDown, buildArrayTags, buildTagsList} from "./helper.js";
+import { buildSearchForm, buildCardPlat,
+         buildCardPlats, buildDropDown,
+         buildArrayTags, buildTagsList,
+         cardPlat, getAllIngredients,
+         getAllUstensils,getAllAppareils} from "./helper.js";
 
 
 
@@ -6,18 +10,13 @@ var tab_ingredients = [];
 var tab_ustensiles = [];
 var tab_appareils = [];
 var closeTags;
-recipes.forEach(elt => {
-  elt.ingredients.forEach(ing =>{
-    if (!tab_ingredients.includes(ing.ingredient)) {
-        tab_ingredients.push(ing.ingredient);}
-  })
-  elt.ustensils.forEach(ust =>{
-    if (!tab_ustensiles.includes(ust)) {
-      tab_ustensiles.push(ust);}
-  })
-  if (!tab_appareils.includes(elt.appliance)) {
-    tab_appareils.push(elt.appliance);}
-}); 
+
+tab_ingredients = getAllIngredients(recipes);
+tab_ustensiles  = getAllUstensils(recipes);
+tab_appareils   = getAllAppareils(recipes);
+
+
+
 
 // console.log("=============");
 // console.log(tab_ingredients);
@@ -36,7 +35,7 @@ const footer = document.createElement("footer");
 // Ajout des elements a la struture base
 body.appendChild(header);
 body.appendChild(main);
-body.appendChild(footer)
+body.appendChild(footer);
 header.classList.add("d-flex");
 header.classList.add("align-items-center");
 header.classList.add("justify-content-center");
@@ -55,15 +54,7 @@ let rows = document.createElement("div");
 cardSection.appendChild(rows);
 rows.classList.add("row");
 rows.classList.add("rowcard");
-
-recipes.forEach((element)=>{buildCardPlats(element);});
-
-// recipes.forEach(element => {
-//        element.ingredients.forEach(i=>{console.log(i.ingredient+":"+i.quantity+" "+i.unit??i.unit)});     
-// });
-
-// buildIngredientsPlat();
-
+cardPlat(recipes);
 
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
 const globalSearch = document.querySelector('.input-search');
@@ -82,19 +73,11 @@ globalSearch.addEventListener('input', function() {
         // console.log(searchTerm);
           searchResults.push(recipes.filter(item =>
              item.name.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm)));
-          rows.innerHTML="";
-          // console.log('tableau resultat=>',searchResults);
-          for (let index = 0; index < searchResults.length; index++) {
-            let elts = searchResults[index];
-            for (let i = 0; i < elts.length; i++) {
-             buildCardPlats(elts[i]);  
+             rows.innerHTML="";
+            searchResults.forEach(index =>  cardPlat(index));  
           }
-     }
-}else{
-   //location.reload();
-   for (let index = 0; index < recipes.length; index++) {
-    // rows.innerHTML="";
-    buildCardPlats(recipes[index]);   }
+     else{
+      cardPlat(recipes);
 }});
 
 
@@ -118,8 +101,7 @@ ingredientsSearch.addEventListener('input', function() {
        
         console.log(ingredientsResults);
 
-        let response = [];
-          
+        let response = [];   
       ingredientsResults[0].forEach(res  => {console.log("resultat",res);
       response = recipes.filter((item)=>item.name.toLowerCase().includes(res.toLowerCase()) 
         || item.description.toLowerCase().includes(res.toLowerCase()))
@@ -164,6 +146,7 @@ itemFilters.forEach((itemFilter) => {
           temp = recipes.filter((item)=>item.name.toLowerCase().includes(element.toLowerCase()) 
           || item.description.toLowerCase().includes(element.toLowerCase()));
          }
+         
          console.log(temp);
          rows.innerHTML="";
          temp.forEach(e =>buildCardPlats(e));
@@ -187,9 +170,6 @@ itemFilters.forEach((itemFilter) => {
         
         })
       });
-
-
-
 
 const closeIngredient = document.querySelector('.ingredients__search__icon');
 
