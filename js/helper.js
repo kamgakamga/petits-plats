@@ -1,3 +1,5 @@
+const nomberOfWords = 100;
+
 
 export function buildSearchForm(){
       let main = document.querySelector("main");
@@ -38,24 +40,24 @@ export function buildCardPlats(element) {
 
    export function buildCardPlat(element,ingredientItem){
  let cardElement = document.createElement("div");
-   cardElement.classList.add("card", "col-4", "border-0", "p-3", "m-0");
+   cardElement.classList.add("card", "col-4", "border-0", "p-1", "m-0");
    cardElement.innerHTML =`<div class="plat-image">
 
                             </div>
                             <div class="card-body">
                                        <div class="card-title-time row">
-                                             <p class="col-9 plats-title">${element.name}</p>
-                                             <p class="col-3 plats-ingredients">
+                                             <p class="col-8 plats-title">${element.name}</p>
+                                             <p class="col-4 plats-ingredients">
                                                       <i class="far fa-clock"></i><span><strong> ${element.time} min</strong></span>
                                              </p>
                                        </div>
                                        <div class="card-ingredients-description row">
-                                             <div class="col-6 plats-ingredients">
+                                             <div class="col-7 plats-ingredients">
                                                    <ul class="main-ingerdients">
                                                             ${ingredientItem+ "" } 
                                                    </ul>
                                              </div>
-                                             <p class="col-6 plats-descriptions">${element.description}</p>
+                                             <p class="col-5 plats-descriptions">${buildTestToDisplay(element.description, nomberOfWords)}</p>
                                        </div>
                             </div>`;
   document.querySelector(".rowcard").appendChild(cardElement);
@@ -228,4 +230,17 @@ export function getAllUstensils(recettes) {
     });}) 
 
   return tab_ustensiles;
+}
+
+function buildTestToDisplay(descriptions, nomberOfWords) {
+
+    if (descriptions.length > nomberOfWords) {
+
+         descriptions = descriptions.slice(0, nomberOfWords)+" plus";
+
+    }else {
+       descriptions = descriptions;  
+
+    }
+  return descriptions;
 }
