@@ -51,9 +51,23 @@ li {
   display: inline-block;
 }
 
-.ingredients__search__input::placeholder {
+.ingredients__search__input::placeholder, .apareils__search__input::placeholder {
   margin-left: 5px;
   color: rgb(200, 202, 204);
+}
+
+.ingredients__search, .ingredients__search {
+  display: flex;
+}
+.ingredients__search__input, .ingredients__search__input {
+  caret-color: #E7E7E7;
+  color: #E7E7E7;
+}
+.ingredients__search__icon, .ingredients__search__icon {
+  color: #E7E7E7;
+  font-size: 20px;
+  transform: rotate(180deg);
+  cursor: pointer;
 }
 
 .ingredients__search {
@@ -70,11 +84,14 @@ li {
   cursor: pointer;
 }
 
+.filtre {
+  max-width: 40%;
+}
 .filtre .ingredients {
   display: none;
-  height: 350px;
+  max-height: 350px;
   overflow: scroll;
-  max-width: 45%;
+  max-width: 100%;
 }
 .filtre .ingredients__contain {
   display: flex;
@@ -83,6 +100,27 @@ li {
   flex-wrap: wrap;
 }
 .filtre .ingredients__contain__item {
+  padding: 1px;
+  width: 32%;
+  margin: 1 2px 1px 2px;
+  font-size: 14px;
+  color: rgb(254, 253, 253);
+  cursor: pointer;
+}
+.filtre .apareils {
+  display: none;
+  max-height: 350px;
+  overflow: scroll;
+  background-color: rgba(0, 0, 0, 0);
+  max-width: 100%;
+}
+.filtre .apareils__contain {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.filtre .apareils__contain__item {
   padding: 1px;
   width: 32%;
   margin: 1 2px 1px 2px;

@@ -2,7 +2,7 @@ const nomberOfWords = 100;
 
 
 export function buildSearchForm(){
-      let main = document.querySelector("main");
+      let searchSection = document.querySelector(".search-section");
       let search = document.createElement("div");
 
         // search.innerHTML=`
@@ -22,7 +22,7 @@ export function buildSearchForm(){
                                 </button>
                               </div>
                            </div>`
-        main.appendChild(search);
+                           searchSection.appendChild(search);
 }
 
 export function buildCardPlats(element) {
@@ -83,51 +83,110 @@ export function buildCardPlats(element) {
 // }
 
 export function buildDropDown(ingredients){
-    const dropDownSection = document.createElement("section");
+
+  const ingredientItemContainer = document.createElement("div");
+        ingredientItemContainer.classList.add("filtre");
+    let  ingredientItem ="";
+    for(let i = 0; i< ingredients.length; i++) {
+      ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
+    }
+
+                                      ingredientItemContainer.innerHTML=` <span class="dropdown mr-2 mr-0 ingredientss btn btn-primary dropdown-toggle">
+                                                                                   Ingredients
+                                                                          </span>
+                                                                          <div class="bg-primary ingredients">
+                                                                                      <div class="row input-group ingredients__search">
+                                                                                          <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
+                                                                                          <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                      </div>
+                                                                                      <ul class="ingredients__contain">
+                                                                                            ${ingredientItem}
+                                                                                      </ul>
+                                                                          </div>`;
+            document.querySelector(".filter-section").appendChild(ingredientItemContainer);                                     
+                                                        }
+
+
+
+export function buildPartIngredients(ingredients){
     let  ingredientItem ="";
     for(let i = 0; i< ingredients.length; i++) {
   //    console.log(ingredients[i].length);
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
-    dropDownSection.classList.add('mb-2','ml-1');
-          dropDownSection.innerHTML=`<div class="row filtre">
-        <div class="dropdown ml-2 mr-2 ingredientss">
-              <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                   Ingredients
-              </a>
-        </div>
-        <div class="bg-primary ingredients">
-                        <div class="row input-group ingredients__search">
-                            <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
-                            <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
-                        </div>
-                        <ul class="ingredients__contain">
-                               ${ingredientItem}
-                        </ul>
-        </div>
-        <div class="dropdown ml-2 mr-2">
-                      <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      Appareils
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      </ul>
-        </div>
-        <div class="dropdown ml-2 mr-2">
-                  <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ustensiles
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </div>
-        </div>`;
+    document.querySelector(".ingredients__contain").innerHTML=`${ingredientItem}`;
+}
 
-        document.querySelector("main").appendChild(dropDownSection);
+
+
+export function buildFilterAppareils(apareils){
+    let  apareilsItem ="";
+    const apareilsItemContainer = document.createElement("div");
+          apareilsItemContainer.classList.add("filtre");
+    for(let i = 0; i< apareils.length; i++) {
+      apareilsItem += "<li class=\"apareils__contain__item\">"+apareils[i]+"</li>";
+    }
+
+                                         apareilsItemContainer.innerHTML=`<span class="dropdown mr-2 mr-0 apareilss btn btn-success dropdown-toggle">
+                                                                                  Apareils
+                                                                          </span>
+                                                                          <div class="bg-success apareils">
+                                                                                      <div class="row input-group ingredients__search">
+                                                                                          <input type="text" class="form-control bg-success ml-3 apareils__search__input" placeholder="Rechercher un apareil">
+                                                                                          <span class="apareils__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                      </div>
+                                                                                      <ul class="apareils__contain">
+                                                                                            ${apareilsItem}
+                                                                                      </ul>
+                                                                          </div>`;
+                                  document.querySelector(".filter-section").appendChild(apareilsItemContainer);                                   
+                                                        }
+
+
+
+export function buildPartApareils(apareils){
+    let  apareilsItem ="";
+    for(let i = 0; i< apareils.length; i++) {
+      appareilsItem += "<li class=\"apareils__contain__item\">"+apareils[i]+"</li>";
+    }
+    document.querySelector(".apareils__contain").innerHTML=`${apareilsItem}`;
+}
+
+
+export function buildFilterUstensiles(ustenciles){
+    let  ustensilesItem ="";
+    const ustensilesItemContainer = document.createElement("div");
+    ustensilesItemContainer.classList.add("filtre");
+    for(let i = 0; i< ustenciles.length; i++) {
+      ustensilesItem += "<li class=\"ustenciles__contain__item\">"+ustenciles[i]+"</li>";
+    }
+
+    ustensilesItemContainer.innerHTML=`
+                                                                          <span class="dropdown mr-2 mr-0 ustensiless btn btn-danger dropdown-toggle">
+                                                                                  Ustensiles
+                                                                          </span>
+                                                                          <div class="bg-danger ustensiles">
+                                                                                      <div class="row input-group ustensiles__search">
+                                                                                          <input type="text" class="form-control bg-primary ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
+                                                                                          <span class="ustensiles__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                      </div>
+                                                                                      <ul class="ustensile__contain">
+                                                                                            ${ustensilesItem}
+                                                                                      </ul>
+                                                                          </div>
+                                            `;
+                                  document.querySelector(".filter-section").appendChild(ustensilesItemContainer);                                   
+                                                        }
+
+
+
+export function buildPartUstensiles(ustenciles){
+    let  ustensilesItem ="";
+    for(let i = 0; i< apareils.length; i++) {
+  //    console.log(ingredients[i].length);
+  ustensilesItem += "<li class=\"ustenciles__contain__item\">"+ustenciles[i]+"</li>";
+    }
+    document.querySelector(".ustenciles__contain").innerHTML=`${ustensilesItem}`;
 }
 
 export function buildNewTags(tag) {
@@ -148,14 +207,14 @@ export function buildArrayTags(arrayTags) {
 export function buildTagsList(arrayTagsResult) {
   // console.log("Construction des tags en cours...");
   if (arrayTagsResult.length > 0) {
-    document.querySelector(".filter-section").innerHTML ='';
+    document.querySelector(".search-section").innerHTML ='';
     arrayTagsResult.forEach((tag) => {
        const pFilter = document.createElement('p');
        pFilter.classList.add("bg-primary","paragraphe-filter");
        pFilter.innerHTML =`<span>${tag}</span>
                            <i class="fas fa-times close-tags"></i>
                            `
-    document.querySelector(".filter-section").appendChild(pFilter);
+    document.querySelector(".search-section").appendChild(pFilter);
     });
    }
   //  console.log("fin de la construction des tags...");

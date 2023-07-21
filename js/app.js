@@ -2,7 +2,9 @@ import { buildSearchForm, buildCardPlat,
          buildCardPlats, buildDropDown,
          buildArrayTags, buildTagsList,
          cardPlat, getAllIngredients,
-         getAllUstensils,getAllAppareils} from "./helper.js";
+         getAllUstensils,getAllAppareils,
+         buildPartIngredients,buildFilterAppareils,
+         buildPartUstensiles,buildFilterUstensiles} from "./helper.js";
 
 
 
@@ -14,16 +16,6 @@ var closeTags;
 tab_ingredients = getAllIngredients(recipes);
 tab_ustensiles  = getAllUstensils(recipes);
 tab_appareils   = getAllAppareils(recipes);
-
-
-
-
-// console.log("=============");
-// console.log(tab_ingredients);
-// console.log("**************");
-// console.log(tab_ustensiles);
-// console.log("......................");
-// console.log(tab_appareils);
 
 // Construction de la structure de base de ma page index.
 const body = document.body;
@@ -43,17 +35,26 @@ header.classList.add("justify-content-center");
 header.classList.add("mb-2","mt-2");
 header.classList.add("header");
 header.innerHTML=`<img src="img/15973932905401_logo.png" class="header" alt="logo les petits plats">`
+const searchSection = document.createElement("section");
+searchSection.classList.add("search-section");
+main.appendChild(searchSection);
+buildSearchForm();
+
+
 const filterSection = document.createElement("section");
 filterSection.classList.add("filter-section");
-buildSearchForm();
 main.appendChild(filterSection);
+document.querySelector(".filter-section").style.display = 'flex';
 buildDropDown(tab_ingredients);
+buildFilterAppareils(tab_appareils);
+buildFilterUstensiles(tab_ustensiles);
+
+
 let cardSection = document.createElement("section");
 main.appendChild(cardSection);
 let rows = document.createElement("div");
 cardSection.appendChild(rows);
-rows.classList.add("row");
-rows.classList.add("rowcard");
+rows.classList.add("row","rowcard");
 cardPlat(recipes);
 
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
@@ -91,39 +92,52 @@ const ingredientsSearch = document.querySelector('.ingredients__search__input');
 ingredientsSearch.addEventListener('input', function() {
     // Effacez les résultats précédents
      var ingredientsResults = [];
-   //  console.log("===Filtre ingredients=======");
     // Récupérez le texte saisi dans le champ de recherche
     const ingredientSearchTerm = ingredientsSearch.value.toLowerCase();
     // Effectuez la recherche en utilisant les données appropriées (par exemple, un tableau de résultats préexistant)
     if(ingredientSearchTerm.length >= 3 ){
 
         ingredientsResults.push(tab_ingredients.filter(item => item.toLowerCase().includes(ingredientSearchTerm)));
-       
-        console.log(ingredientsResults);
-
         let response = [];   
-      ingredientsResults[0].forEach(res  => {console.log("resultat",res);
+      ingredientsResults[0].forEach(res  => {
       response = recipes.filter((item)=>item.name.toLowerCase().includes(res.toLowerCase()) 
         || item.description.toLowerCase().includes(res.toLowerCase()))
      });
 
-      console.log(response);
+      console.log("data:",ingredientsResults);
          rows.innerHTML="";
+         document.querySelector(".ingredients__contain").innerHTML ='';
+         buildPartIngredients(ingredientsResults[0]);
          response.forEach(e =>buildCardPlats(e));  
-         let ul = document.querySelector(".ingredients__contain");
+       //  let ul = document.querySelector(".ingredients__contain");
      }else{
-         recipes.forEach(e =>buildCardPlats(e));
+      buildPartIngredients(tab_ingredients);
      }
   });
 
 
-  //Ouverture et fermeture des dropdonw des filtres
+  //Ouverture et fermeture des dropdonw des filtres: ingredients
    let ingredients = document.querySelector(".ingredientss");
       ingredients.addEventListener('click',function(){
-      // console.log("click sur ingredients");
+        console.log("Ouverture ingredient");
       document.querySelector(".ingredientss").style.display = 'none';  
-      document.querySelector(".ingredients").style.display = 'block';
-     // ingredients.style.display='block';
+      document.querySelector(".ingredients").style.display = 'inline-block';
+});
+
+  //Ouverture et fermeture des dropdonw des filtres: apareils
+   let apareils = document.querySelector(".apareilss");
+   console.log("Ouverture apareils");
+   apareils.addEventListener('click',function(){
+      document.querySelector(".apareilss").style.display = 'none';  
+      document.querySelector(".apareils").style.display = 'inline-block';
+});
+
+  //Ouverture et fermeture des dropdonw des filtres: ustensiles
+   let ustensiles = document.querySelector(".ustensiles");
+   ustensiles.addEventListener('click',function(){
+      console.log("Ouverture ustensiles");
+      document.querySelector(".ustensiless").style.display = 'none';  
+      document.querySelector(".ustensiles").style.display = 'inline-block';
 });
 
 
@@ -163,8 +177,6 @@ itemFilters.forEach((itemFilter) => {
                 buildTagsList(arrayTagsResult); }
               });
           } );
-         
-          
           document.querySelector(".ingredients").style.display = 'none';
           document.querySelector(".ingredientss").style.display = 'block';
         
@@ -176,6 +188,27 @@ const closeIngredient = document.querySelector('.ingredients__search__icon');
 closeIngredient.addEventListener('click',(event) => {
   // console.log(event.target.value);
   // console.log("clique sur sur un item de filtre.");
+  console.log('fermeture');
+  document.querySelector(".ingredients").style.display = 'none';
+  document.querySelector(".ingredientss").style.display = 'block';
+ });
+
+
+const closeAppareils = document.querySelector('.apareils__search__icon');
+
+closeIngredient.addEventListener('click',(event) => {
+  // console.log(event.target.value);
+  // console.log("clique sur sur un item de filtre.");
+  console.log('fermeture');
+  document.querySelector(".ingredients").style.display = 'none';
+  document.querySelector(".ingredientss").style.display = 'block';
+ });
+const closeUstensils = document.querySelector('.ustensiles__search__icon');
+
+closeIngredient.addEventListener('click',(event) => {
+  // console.log(event.target.value);
+  // console.log("clique sur sur un item de filtre.");
+  console.log('fermeture');
   document.querySelector(".ingredients").style.display = 'none';
   document.querySelector(".ingredientss").style.display = 'block';
  });
