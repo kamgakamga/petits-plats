@@ -94,7 +94,7 @@ export function buildDropDown(ingredients){
                                       ingredientItemContainer.innerHTML=` <span class="dropdown mr-2 mr-0 ingredientss btn btn-primary dropdown-toggle">
                                                                                    Ingredients
                                                                           </span>
-                                                                          <div class="bg-primary ingredients">
+                                                                          <div class="bg-primary mr-3 ingredients">
                                                                                       <div class="row input-group ingredients__search">
                                                                                           <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
                                                                                           <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
@@ -130,7 +130,7 @@ export function buildFilterAppareils(apareils){
                                          apareilsItemContainer.innerHTML=`<span class="dropdown mr-2 mr-0 apareilss btn btn-success dropdown-toggle">
                                                                                   Apareils
                                                                           </span>
-                                                                          <div class="bg-success apareils">
+                                                                          <div class="bg-success mr-3 apareils">
                                                                                       <div class="row input-group ingredients__search">
                                                                                           <input type="text" class="form-control bg-success ml-3 apareils__search__input" placeholder="Rechercher un apareil">
                                                                                           <span class="apareils__search__icon"><i class="fas fa-caret-down"></i></span>
@@ -158,19 +158,19 @@ export function buildFilterUstensiles(ustenciles){
     const ustensilesItemContainer = document.createElement("div");
     ustensilesItemContainer.classList.add("filtre");
     for(let i = 0; i< ustenciles.length; i++) {
-      ustensilesItem += "<li class=\"ustenciles__contain__item\">"+ustenciles[i]+"</li>";
+      ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustenciles[i]+"</li>";
     }
 
     ustensilesItemContainer.innerHTML=`
                                                                           <span class="dropdown mr-2 mr-0 ustensiless btn btn-danger dropdown-toggle">
                                                                                   Ustensiles
                                                                           </span>
-                                                                          <div class="bg-danger ustensiles">
+                                                                          <div class="bg-danger ustensiles mr-2">
                                                                                       <div class="row input-group ustensiles__search">
-                                                                                          <input type="text" class="form-control bg-primary ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
+                                                                                          <input type="text" class="form-control bg-danger ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
                                                                                           <span class="ustensiles__search__icon"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
-                                                                                      <ul class="ustensile__contain">
+                                                                                      <ul class="ustensiles__contain">
                                                                                             ${ustensilesItem}
                                                                                       </ul>
                                                                           </div>

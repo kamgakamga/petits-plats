@@ -118,14 +118,14 @@ ingredientsSearch.addEventListener('input', function() {
 
   //Ouverture et fermeture des dropdonw des filtres: ingredients
    let ingredients = document.querySelector(".ingredientss");
-      ingredients.addEventListener('click',function(){
+       ingredients.addEventListener('click',function(){
         console.log("Ouverture ingredient");
       document.querySelector(".ingredientss").style.display = 'none';  
       document.querySelector(".ingredients").style.display = 'inline-block';
 });
 
   //Ouverture et fermeture des dropdonw des filtres: apareils
-   let apareils = document.querySelector(".apareilss");
+   let apareils = document.querySelector('.apareilss');
    console.log("Ouverture apareils");
    apareils.addEventListener('click',function(){
       document.querySelector(".apareilss").style.display = 'none';  
@@ -133,7 +133,7 @@ ingredientsSearch.addEventListener('input', function() {
 });
 
   //Ouverture et fermeture des dropdonw des filtres: ustensiles
-   let ustensiles = document.querySelector(".ustensiles");
+   let ustensiles = document.querySelector('.ustensiless');
    ustensiles.addEventListener('click',function(){
       console.log("Ouverture ustensiles");
       document.querySelector(".ustensiless").style.display = 'none';  
@@ -188,7 +188,7 @@ const closeIngredient = document.querySelector('.ingredients__search__icon');
 closeIngredient.addEventListener('click',(event) => {
   // console.log(event.target.value);
   // console.log("clique sur sur un item de filtre.");
-  console.log('fermeture');
+  console.log('fermeture ingredient.');
   document.querySelector(".ingredients").style.display = 'none';
   document.querySelector(".ingredientss").style.display = 'block';
  });
@@ -196,21 +196,22 @@ closeIngredient.addEventListener('click',(event) => {
 
 const closeAppareils = document.querySelector('.apareils__search__icon');
 
-closeIngredient.addEventListener('click',(event) => {
+closeAppareils.addEventListener('click',(event) => {
   // console.log(event.target.value);
   // console.log("clique sur sur un item de filtre.");
   console.log('fermeture');
-  document.querySelector(".ingredients").style.display = 'none';
-  document.querySelector(".ingredientss").style.display = 'block';
+  document.querySelector(".apareils").style.display = 'none';
+  document.querySelector(".apareilss").style.display = 'block';
  });
-const closeUstensils = document.querySelector('.ustensiles__search__icon');
 
-closeIngredient.addEventListener('click',(event) => {
+
+const closeUstensiles = document.querySelector('.ustensiles__search__icon');
+closeUstensiles.addEventListener('click',(event) => {
   // console.log(event.target.value);
   // console.log("clique sur sur un item de filtre.");
-  console.log('fermeture');
-  document.querySelector(".ingredients").style.display = 'none';
-  document.querySelector(".ingredientss").style.display = 'block';
+  console.log('fermeture ustensiles...');
+  document.querySelector(".ustensiles").style.display = 'none';
+  document.querySelector(".ustensiless").style.display = 'block';
  });
  closeTags = document.querySelectorAll(".paragraphe-filter");
  console.log("=======>",closeTags);

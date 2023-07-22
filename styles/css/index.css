@@ -51,33 +51,19 @@ li {
   display: inline-block;
 }
 
-.ingredients__search__input::placeholder, .apareils__search__input::placeholder {
+.ingredients__search__input::placeholder, .apareils__search__input::placeholder, .ustensiles__search__input::placeholder {
   margin-left: 5px;
   color: rgb(200, 202, 204);
 }
 
-.ingredients__search, .ingredients__search {
+.ingredients__search, .apareils__search, .ustensiles__search {
   display: flex;
 }
-.ingredients__search__input, .ingredients__search__input {
+.ingredients__search__input, .apareils__search__input, .ustensiles__search__input {
   caret-color: #E7E7E7;
   color: #E7E7E7;
 }
-.ingredients__search__icon, .ingredients__search__icon {
-  color: #E7E7E7;
-  font-size: 20px;
-  transform: rotate(180deg);
-  cursor: pointer;
-}
-
-.ingredients__search {
-  display: flex;
-}
-.ingredients__search__input {
-  caret-color: #E7E7E7;
-  color: #E7E7E7;
-}
-.ingredients__search__icon {
+.ingredients__search__icon, .apareils__search__icon, .ustensiles__search__icon {
   color: #E7E7E7;
   font-size: 20px;
   transform: rotate(180deg);
@@ -85,46 +71,25 @@ li {
 }
 
 .filtre {
-  max-width: 40%;
+  max-width: 33%;
 }
-.filtre .ingredients {
+.filtre .ingredients, .filtre .apareils, .filtre .ustensiles {
   display: none;
   max-height: 350px;
   overflow: scroll;
   max-width: 100%;
 }
-.filtre .ingredients__contain {
+.filtre .ingredients__contain, .filtre .apareils__contain, .filtre .ustensiles__contain {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.filtre .ingredients__contain__item {
+.filtre .ingredients__contain__item, .filtre .apareils__contain__item, .filtre .ustensiles__contain__item {
   padding: 1px;
-  width: 32%;
-  margin: 1 2px 1px 2px;
-  font-size: 14px;
-  color: rgb(254, 253, 253);
-  cursor: pointer;
-}
-.filtre .apareils {
-  display: none;
-  max-height: 350px;
-  overflow: scroll;
-  background-color: rgba(0, 0, 0, 0);
-  max-width: 100%;
-}
-.filtre .apareils__contain {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.filtre .apareils__contain__item {
-  padding: 1px;
-  width: 32%;
-  margin: 1 2px 1px 2px;
-  font-size: 14px;
+  width: 28%;
+  margin: 1px 2px 1px 2px;
+  font-size: 12px;
   color: rgb(254, 253, 253);
   cursor: pointer;
 }
