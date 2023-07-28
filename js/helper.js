@@ -147,7 +147,7 @@ export function buildFilterAppareils(apareils){
 export function buildPartApareils(apareils){
     let  apareilsItem ="";
     for(let i = 0; i< apareils.length; i++) {
-      appareilsItem += "<li class=\"apareils__contain__item\">"+apareils[i]+"</li>";
+      apareilsItem += "<li class=\"apareils__contain__item\">"+apareils[i]+"</li>";
     }
     document.querySelector(".apareils__contain").innerHTML=`${apareilsItem}`;
 }
@@ -180,13 +180,13 @@ export function buildFilterUstensiles(ustenciles){
 
 
 
-export function buildPartUstensiles(ustenciles){
+export function buildPartUstensiles(ustensiles){
     let  ustensilesItem ="";
-    for(let i = 0; i< apareils.length; i++) {
+    for(let i = 0; i< ustensiles.length; i++) {
   //    console.log(ingredients[i].length);
-  ustensilesItem += "<li class=\"ustenciles__contain__item\">"+ustenciles[i]+"</li>";
+  ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustensiles[i]+"</li>";
     }
-    document.querySelector(".ustenciles__contain").innerHTML=`${ustensilesItem}`;
+    document.querySelector(".ustensiles__contain").innerHTML=`${ustensilesItem}`;
 }
 
 export function buildNewTags(tag) {
@@ -212,8 +212,7 @@ export function buildTagsList(arrayTagsResult) {
        const pFilter = document.createElement('p');
        pFilter.classList.add("bg-primary","paragraphe-filter");
        pFilter.innerHTML =`<span>${tag}</span>
-                           <i class="fas fa-times close-tags"></i>
-                           `
+                           <i class="fas fa-times close-tags"></i>`
     document.querySelector(".search-section").appendChild(pFilter);
     });
    }

@@ -4,7 +4,7 @@ import { buildSearchForm, buildCardPlat,
          cardPlat, getAllIngredients,
          getAllUstensils,getAllAppareils,
          buildPartIngredients,buildFilterAppareils,
-         buildPartUstensiles,buildFilterUstensiles} from "./helper.js";
+         buildPartUstensiles,buildFilterUstensiles, buildPartApareils} from "./helper.js";
 
 
 
@@ -21,7 +21,7 @@ tab_appareils   = getAllAppareils(recipes);
 const body = document.body;
 const header = document.createElement("header");
 const main = document.createElement("main");
-             main.classList.add("container");
+             main.classList.add("container", "main");
 const footer = document.createElement("footer");
 
 // Ajout des elements a la struture base
@@ -38,6 +38,7 @@ header.innerHTML=`<img src="img/15973932905401_logo.png" class="header" alt="log
 const searchSection = document.createElement("section");
 searchSection.classList.add("search-section");
 main.appendChild(searchSection);
+// document.querySelector(".main").style.position = 'relative';
 buildSearchForm();
 
 
@@ -45,6 +46,7 @@ const filterSection = document.createElement("section");
 filterSection.classList.add("filter-section");
 main.appendChild(filterSection);
 document.querySelector(".filter-section").style.display = 'flex';
+// document.querySelector(".filter-section").style.position = 'absolute';
 buildDropDown(tab_ingredients);
 buildFilterAppareils(tab_appareils);
 buildFilterUstensiles(tab_ustensiles);
@@ -65,6 +67,9 @@ const globalSearch = document.querySelector('.input-search');
 globalSearch.addEventListener('input', function() {
     // Effacez les résultats précédents
      var searchResults = [];
+     var apareilsResults = [];
+     var ingredientResults = [];
+     var ustensilesResults = [];
 
     // Récupérez le texte saisi dans le champ de recherche
     const searchTerm = globalSearch.value.toLowerCase();
@@ -75,10 +80,25 @@ globalSearch.addEventListener('input', function() {
           searchResults.push(recipes.filter(item =>
              item.name.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm)));
              rows.innerHTML="";
-            searchResults.forEach(index =>  cardPlat(index));  
+             searchResults.forEach(index =>  cardPlat(index)); 
+             
+             searchResults.forEach(ingredients => 
+              {
+                ingredientResults = getAllIngredients(ingredients);
+                ustensilesResults = getAllUstensils(ingredients);
+                apareilsResults = getAllAppareils(ingredients);
+              });
+
+            //  console.log("data",ingredientResults);
+             buildPartIngredients(ingredientResults);
+             buildPartApareils(apareilsResults);
+             buildPartUstensiles(ustensilesResults);
           }
      else{
       cardPlat(recipes);
+//       buildDropDown(tab_ingredients);
+// buildFilterAppareils(tab_appareils);
+// buildFilterUstensiles(tab_ustensiles);
 }});
 
 
@@ -116,6 +136,84 @@ ingredientsSearch.addEventListener('input', function() {
   });
 
 
+
+
+
+
+// Sélectionnez l'élément de champ de recherche et la liste de résultats
+const apareilsSearch = document.querySelector('.apareils__search__input');
+//const searchResults = document.getElementById('searchResults');
+
+// Ajoutez un écouteur d'événement pour la saisie de texte dans le champ de recherche
+apareilsSearch.addEventListener('input', function() {
+    // Effacez les résultats précédents
+     var apareilsResults = [];
+    // Récupérez le texte saisi dans le champ de recherche
+    const apareilsSearchTerm = apareilsSearch.value.toLowerCase();
+    // Effectuez la recherche en utilisant les données appropriées (par exemple, un tableau de résultats préexistant)
+    if(apareilsSearchTerm.length >= 3 ){
+           console.log(apareilsSearchTerm);
+      apareilsResults.push(tab_appareils.filter(item => item.toLowerCase().includes(apareilsSearchTerm)));
+        let response = [];
+        console.log(apareilsResults);   
+        apareilsResults[0].forEach(res  => {
+      response = recipes.filter((item)=>item.name.toLowerCase().includes(res.toLowerCase()) 
+        || item.description.toLowerCase().includes(res.toLowerCase()))
+     });
+      console.log("data:",apareilsResults);
+         rows.innerHTML="";
+         document.querySelector(".ingredients__contain").innerHTML ='';
+         buildPartApareils(apareilsResults[0]);
+         response.forEach(e =>buildCardPlats(e));  
+       //  let ul = document.querySelector(".ingredients__contain");
+     }else{
+      buildPartApareils(tab_appareils);
+     }
+  });
+
+
+
+
+
+// Sélectionnez l'élément de champ de recherche et la liste de résultats
+const ustensilesSearch = document.querySelector('.ustensiles__search__input');
+//const searchResults = document.getElementById('searchResults');
+
+// Ajoutez un écouteur d'événement pour la saisie de texte dans le champ de recherche
+ustensilesSearch.addEventListener('input', function() {
+    // Effacez les résultats précédents
+     var ustensilesResults = [];
+    // Récupérez le texte saisi dans le champ de recherche
+    const ustensilesSearchTerm = ustensilesSearch.value.toLowerCase();
+    // Effectuez la recherche en utilisant les données appropriées (par exemple, un tableau de résultats préexistant)
+    if(ustensilesSearchTerm.length >= 3 ){
+           console.log(ustensilesSearchTerm);
+           ustensilesResults.push(tab_ustensiles.filter(item => item.toLowerCase().includes(ustensilesSearchTerm)));
+        let response = [];
+        console.log(ustensilesResults);   
+        ustensilesResults[0].forEach(res  => {
+      response = recipes.filter((item)=>item.name.toLowerCase().includes(res.toLowerCase()) 
+        || item.description.toLowerCase().includes(res.toLowerCase()))
+     });
+      console.log("data:",ustensilesResults);
+         rows.innerHTML="";
+         document.querySelector(".ustensiles__contain").innerHTML ='';
+         buildPartUstensiles(ustensilesResults[0]);
+         response.forEach(e =>buildCardPlats(e));  
+       //  let ul = document.querySelector(".ingredients__contain");
+     }else{
+      buildPartUstensiles(tab_ustensiles);
+     }
+  });
+
+
+
+
+
+
+
+
+
   //Ouverture et fermeture des dropdonw des filtres: ingredients
    let ingredients = document.querySelector(".ingredientss");
        ingredients.addEventListener('click',function(){
@@ -148,7 +246,7 @@ var temp = [];
 // console.log(itemFilters);
 itemFilters.forEach((itemFilter) => {
   itemFilter.addEventListener('click', (event) => { 
-          
+          console.log('click sur un item');
           if (!arrayTags.includes(event.target.textContent)) {
             arrayTags.push(event.target.textContent);
           }
@@ -163,19 +261,21 @@ itemFilters.forEach((itemFilter) => {
          
          console.log(temp);
          rows.innerHTML="";
+         var cmpt = 0;
          temp.forEach(e =>buildCardPlats(e));
           closeTags = document.querySelectorAll(".close-tags");
-          
+          console.log(closeTags);
           closeTags.forEach((closeTag) =>{
             closeTag.addEventListener('click', (e) => {
+            console.log('compteur:',e.target);
                let elementToMove  = e.target.parentNode.firstElementChild.innerHTML;
-              let index = arrayTagsResult.indexOf(elementToMove);
+               let index = arrayTagsResult.indexOf(elementToMove);
                console.log(arrayTagsResult.indexOf(elementToMove.innerHTML));
                if (index > -1) {
                 arrayTagsResult.splice(index, 1);
                 console.log("suppression effectué avec succes !!!");
-                buildTagsList(arrayTagsResult); }
-              });
+                buildTagsList(arrayTagsResult); 
+              }});
           } );
           document.querySelector(".ingredients").style.display = 'none';
           document.querySelector(".ingredientss").style.display = 'block';
