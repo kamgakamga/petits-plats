@@ -82,29 +82,108 @@ export function buildCardPlats(element) {
 //     console.log("okooooooo");
 // }
 
-export function buildDropDown(ingredients){
 
+export function updateDropDown(ingredients){
+ 
+  const element = document.querySelector(".ingredients");
+ 
+  if(element !== null) {
+     document.querySelector(".ingredients").innerHTML = '';
+
+    let  ingredientItem ="";
+    for(let i = 0; i< ingredients.length; i++) {
+      ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
+    }
+
+    document.querySelector(".ingredients").innerHTML = `
+                                                          <div class="row input-group ingredients__search">
+                                                                <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
+                                                                <span class="ingredients__search__icon" onClick="closeFilterIngredient();"><i class="fas fa-caret-down"></i></span>
+                                                          </div>
+                                                          <ul class="ingredients__contain">
+                                                                ${ingredientItem}
+                                                            </ul>`;
+      // document.querySelector(".ingredients__search__icon").addEventListener("click",closeFilter());                                                      
+} }
+
+
+export function updateFilterAppareils(apareils){
+ 
+  const element = document.querySelector(".apareils");
+ 
+  if(element !== null) {
+     document.querySelector(".apareils").innerHTML = '';
+
+    let  apareilsItem ="";
+    for(let i = 0; i< apareils.length; i++) {
+      apareilsItem += "<li class=\"ingredients__contain__item\">"+apareils[i]+"</li>";
+    }
+
+    document.querySelector(".apareils").innerHTML = `
+                                                          <div class="row input-group apareils__search">
+                                                                <input type="text" class="form-control bg-success ml-3 apareils__search__input" placeholder="Rechercher un apareils">
+                                                                <span class="apareils__search__icon" onClick="closeFilterApareil();"><i class="fas fa-caret-down"></i></span>
+                                                          </div>
+                                                          <ul class="apareils__contain">
+                                                                ${apareilsItem}
+                                                            </ul>`;
+} }
+
+
+
+
+export function updateFilterUstansiles(ustensiles){
+ 
+  const element = document.querySelector(".ustensiles");
+ 
+  if(element !== null) {
+     document.querySelector(".ustensiles").innerHTML = '';
+
+    let  ustensilesItem ="";
+    for(let i = 0; i< ustensiles.length; i++) {
+      ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustensiles[i]+"</li>";
+    }
+
+    document.querySelector(".ustensiles").innerHTML = `
+                                                          <div class="row input-group ustensiles__search">
+                                                                <input type="text" class="form-control bg-danger ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
+                                                                <span class="ustensiles__search__icon" onClick="closeFilterUstensile();"><i class="fas fa-caret-down"></i></span>
+                                                          </div>
+                                                          <ul class="ustensiles__contain">
+                                                                ${ustensilesItem}
+                                                            </ul>`;
+} }
+
+
+
+
+
+
+
+
+
+
+export function buildDropDown(ingredients){
   const ingredientItemContainer = document.createElement("div");
         ingredientItemContainer.classList.add("filtre");
     let  ingredientItem ="";
     for(let i = 0; i< ingredients.length; i++) {
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
-
                                       ingredientItemContainer.innerHTML=` <span class="dropdown mr-2 mr-0 ingredientss btn btn-primary dropdown-toggle">
                                                                                    Ingredients
                                                                           </span>
                                                                           <div class="bg-primary mr-3 ingredients">
                                                                                       <div class="row input-group ingredients__search">
                                                                                           <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
-                                                                                          <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                          <span class="ingredients__search__icon" onClick="closeFilterIngredient();"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
                                                                                       <ul class="ingredients__contain">
                                                                                             ${ingredientItem}
                                                                                       </ul>
                                                                           </div>`;
             document.querySelector(".filter-section").appendChild(ingredientItemContainer);                                     
-                                                        }
+}
 
 
 
@@ -133,7 +212,7 @@ export function buildFilterAppareils(apareils){
                                                                           <div class="bg-success mr-3 apareils">
                                                                                       <div class="row input-group ingredients__search">
                                                                                           <input type="text" class="form-control bg-success ml-3 apareils__search__input" placeholder="Rechercher un apareil">
-                                                                                          <span class="apareils__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                          <span class="apareils__search__icon" onClick="closeFilterApareil();"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
                                                                                       <ul class="apareils__contain">
                                                                                             ${apareilsItem}
@@ -153,12 +232,12 @@ export function buildPartApareils(apareils){
 }
 
 
-export function buildFilterUstensiles(ustenciles){
+export function buildFilterUstensiles(ustensiles){
     let  ustensilesItem ="";
     const ustensilesItemContainer = document.createElement("div");
     ustensilesItemContainer.classList.add("filtre");
-    for(let i = 0; i< ustenciles.length; i++) {
-      ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustenciles[i]+"</li>";
+    for(let i = 0; i< ustensiles.length; i++) {
+      ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustensiles[i]+"</li>";
     }
 
     ustensilesItemContainer.innerHTML=`
@@ -168,7 +247,7 @@ export function buildFilterUstensiles(ustenciles){
                                                                           <div class="bg-danger ustensiles mr-2">
                                                                                       <div class="row input-group ustensiles__search">
                                                                                           <input type="text" class="form-control bg-danger ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
-                                                                                          <span class="ustensiles__search__icon"><i class="fas fa-caret-down"></i></span>
+                                                                                          <span class="ustensiles__search__icon" onClick="closeFilterUstensile();"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
                                                                                       <ul class="ustensiles__contain">
                                                                                             ${ustensilesItem}
@@ -302,3 +381,4 @@ function buildTestToDisplay(descriptions, nomberOfWords) {
     }
   return descriptions;
 }
+

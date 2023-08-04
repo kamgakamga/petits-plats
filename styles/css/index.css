@@ -76,7 +76,7 @@ li {
 .filtre .ingredients, .filtre .apareils, .filtre .ustensiles {
   display: none;
   max-height: 350px;
-  overflow: scroll;
+  overflow: auto;
   max-width: 100%;
 }
 .filtre .ingredients__contain, .filtre .apareils__contain, .filtre .ustensiles__contain {
