@@ -4,7 +4,8 @@ import { buildSearchForm, buildCardPlat,
          cardPlat, getAllIngredients,
          getAllUstensils,getAllAppareils,
          buildPartIngredients,buildFilterAppareils,
-         buildPartUstensiles,buildFilterUstensiles, buildPartApareils} from "./helper.js";
+         buildPartUstensiles,buildFilterUstensiles,
+         buildPartApareils} from "./helper.js";
 
 
 
@@ -102,8 +103,6 @@ globalSearch.addEventListener('input', function() {
 }});
 
 
-
-
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
 const ingredientsSearch = document.querySelector('.ingredients__search__input');
 //const searchResults = document.getElementById('searchResults');
@@ -134,11 +133,6 @@ ingredientsSearch.addEventListener('input', function() {
       buildPartIngredients(tab_ingredients);
      }
   });
-
-
-
-
-
 
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
 const apareilsSearch = document.querySelector('.apareils__search__input');
@@ -171,10 +165,6 @@ apareilsSearch.addEventListener('input', function() {
      }
   });
 
-
-
-
-
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
 const ustensilesSearch = document.querySelector('.ustensiles__search__input');
 //const searchResults = document.getElementById('searchResults');
@@ -206,14 +196,6 @@ ustensilesSearch.addEventListener('input', function() {
      }
   });
 
-
-
-
-
-
-
-
-
   //Ouverture et fermeture des dropdonw des filtres: ingredients
    let ingredients = document.querySelector(".ingredientss");
        ingredients.addEventListener('click',function(){
@@ -243,6 +225,7 @@ const itemFilters = document.querySelectorAll('.ingredients__contain__item');
 var arrayTags = [];
 var arrayTagsResult = [];
 var temp = [];
+
 // console.log(itemFilters);
 itemFilters.forEach((itemFilter) => {
   itemFilter.addEventListener('click', (event) => { 
@@ -250,8 +233,7 @@ itemFilters.forEach((itemFilter) => {
           if (!arrayTags.includes(event.target.textContent)) {
             arrayTags.push(event.target.textContent);
           }
-          arrayTagsResult = buildArrayTags(arrayTags); 
-        
+        //  arrayTagsResult = buildArrayTags(arrayTags); 
          for (let index = 0; index < arrayTagsResult.length; index++) {
           const element = arrayTagsResult[index];
           // rows.innerHTML="";
@@ -259,27 +241,27 @@ itemFilters.forEach((itemFilter) => {
           || item.description.toLowerCase().includes(element.toLowerCase()));
          }
          
-         console.log(temp);
+         // console.log(temp);
+         
          rows.innerHTML="";
          var cmpt = 0;
          temp.forEach(e =>buildCardPlats(e));
           closeTags = document.querySelectorAll(".close-tags");
           console.log(closeTags);
-          closeTags.forEach((closeTag) =>{
-            closeTag.addEventListener('click', (e) => {
-            console.log('compteur:',e.target);
-               let elementToMove  = e.target.parentNode.firstElementChild.innerHTML;
-               let index = arrayTagsResult.indexOf(elementToMove);
-               console.log(arrayTagsResult.indexOf(elementToMove.innerHTML));
-               if (index > -1) {
-                arrayTagsResult.splice(index, 1);
-                console.log("suppression effectué avec succes !!!");
-                buildTagsList(arrayTagsResult); 
-              }});
-          } );
-          document.querySelector(".ingredients").style.display = 'none';
-          document.querySelector(".ingredientss").style.display = 'block';
-        
+          // closeTags.forEach((closeTag) =>{
+          //   closeTag.addEventListener('click', (e) => {
+          //   console.log('compteur:',e.target);
+          //      let elementToMove  = e.target.parentNode.firstElementChild.innerHTML;
+          //      let index = arrayTagsResult.indexOf(elementToMove);
+          //      console.log(arrayTagsResult.indexOf(elementToMove.innerHTML));
+          //      if (index > -1) {
+          //       arrayTagsResult.splice(index, 1);
+          //       console.log("suppression effectué avec succes !!!");
+          //       buildTagsList(arrayTagsResult); 
+          //     }});
+          // } );
+         //  document.querySelector(".ingredients").style.display = 'none';
+         // document.querySelector(".ingredientss").style.display = 'block';
         })
       });
 

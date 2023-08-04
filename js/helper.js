@@ -294,7 +294,7 @@ function buildTestToDisplay(descriptions, nomberOfWords) {
 
     if (descriptions.length > nomberOfWords) {
 
-         descriptions = descriptions.slice(0, nomberOfWords)+" plus";
+         descriptions = descriptions.slice(0, nomberOfWords)+"...";
 
     }else {
        descriptions = descriptions;  
