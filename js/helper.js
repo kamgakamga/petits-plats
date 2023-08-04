@@ -85,48 +85,32 @@ export function buildCardPlats(element) {
 
 export function updateDropDown(ingredients){
  
-  const element = document.querySelector(".ingredients");
+  const element = document.querySelector(".ingredients__contain");
  
   if(element !== null) {
-     document.querySelector(".ingredients").innerHTML = '';
-
+     document.querySelector(".ingredients__contain").innerHTML = '';
     let  ingredientItem ="";
     for(let i = 0; i< ingredients.length; i++) {
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
-
-    document.querySelector(".ingredients").innerHTML = `
-                                                          <div class="row input-group ingredients__search">
-                                                                <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
-                                                                <span class="ingredients__search__icon" onClick="closeFilterIngredient();"><i class="fas fa-caret-down"></i></span>
-                                                          </div>
-                                                          <ul class="ingredients__contain">
-                                                                ${ingredientItem}
-                                                            </ul>`;
+    document.querySelector(".ingredients__contain").innerHTML = `${ingredientItem}`;
       // document.querySelector(".ingredients__search__icon").addEventListener("click",closeFilter());                                                      
-} }
+}}
 
 
 export function updateFilterAppareils(apareils){
  
-  const element = document.querySelector(".apareils");
+  const element = document.querySelector(".apareils__contain");
  
   if(element !== null) {
-     document.querySelector(".apareils").innerHTML = '';
+     document.querySelector(".apareils__contain").innerHTML = '';
 
     let  apareilsItem ="";
     for(let i = 0; i< apareils.length; i++) {
       apareilsItem += "<li class=\"ingredients__contain__item\">"+apareils[i]+"</li>";
     }
 
-    document.querySelector(".apareils").innerHTML = `
-                                                          <div class="row input-group apareils__search">
-                                                                <input type="text" class="form-control bg-success ml-3 apareils__search__input" placeholder="Rechercher un apareils">
-                                                                <span class="apareils__search__icon" onClick="closeFilterApareil();"><i class="fas fa-caret-down"></i></span>
-                                                          </div>
-                                                          <ul class="apareils__contain">
-                                                                ${apareilsItem}
-                                                            </ul>`;
+    document.querySelector(".apareils__contain").innerHTML = `${apareilsItem}`;
 } }
 
 
@@ -134,33 +118,18 @@ export function updateFilterAppareils(apareils){
 
 export function updateFilterUstansiles(ustensiles){
  
-  const element = document.querySelector(".ustensiles");
+  const element = document.querySelector(".ustensiles__contain");
  
   if(element !== null) {
-     document.querySelector(".ustensiles").innerHTML = '';
+     document.querySelector(".ustensiles__contain").innerHTML = '';
 
     let  ustensilesItem ="";
     for(let i = 0; i< ustensiles.length; i++) {
       ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustensiles[i]+"</li>";
     }
 
-    document.querySelector(".ustensiles").innerHTML = `
-                                                          <div class="row input-group ustensiles__search">
-                                                                <input type="text" class="form-control bg-danger ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
-                                                                <span class="ustensiles__search__icon" onClick="closeFilterUstensile();"><i class="fas fa-caret-down"></i></span>
-                                                          </div>
-                                                          <ul class="ustensiles__contain">
-                                                                ${ustensilesItem}
-                                                            </ul>`;
+    document.querySelector(".ustensiles__contain").innerHTML = `${ustensilesItem}`;
 } }
-
-
-
-
-
-
-
-
 
 
 export function buildDropDown(ingredients){
@@ -176,16 +145,15 @@ export function buildDropDown(ingredients){
                                                                           <div class="bg-primary mr-3 ingredients">
                                                                                       <div class="row input-group ingredients__search">
                                                                                           <input type="text" class="form-control bg-primary ml-3 ingredients__search__input" placeholder="Rechercher un ingrédient">
-                                                                                          <span class="ingredients__search__icon" onClick="closeFilterIngredient();"><i class="fas fa-caret-down"></i></span>
+                                                                                          <span class="ingredients__search__icon"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
                                                                                       <ul class="ingredients__contain">
                                                                                             ${ingredientItem}
                                                                                       </ul>
                                                                           </div>`;
-            document.querySelector(".filter-section").appendChild(ingredientItemContainer);                                     
+            document.querySelector(".filter-section").appendChild(ingredientItemContainer);  
+            document.querySelector(".ingredients__search__icon").setAttribute('onClick','closeFilterIngredient()');                                   
 }
-
-
 
 export function buildPartIngredients(ingredients){
     let  ingredientItem ="";
@@ -247,14 +215,15 @@ export function buildFilterUstensiles(ustensiles){
                                                                           <div class="bg-danger ustensiles mr-2">
                                                                                       <div class="row input-group ustensiles__search">
                                                                                           <input type="text" class="form-control bg-danger ml-3 ustensiles__search__input" placeholder="Rechercher un ustensile">
-                                                                                          <span class="ustensiles__search__icon" onClick="closeFilterUstensile();"><i class="fas fa-caret-down"></i></span>
+                                                                                          <span class="ustensiles__search__icon"><i class="fas fa-caret-down"></i></span>
                                                                                       </div>
                                                                                       <ul class="ustensiles__contain">
                                                                                             ${ustensilesItem}
                                                                                       </ul>
                                                                           </div>
                                             `;
-                                  document.querySelector(".filter-section").appendChild(ustensilesItemContainer);                                   
+                                  document.querySelector(".filter-section").appendChild(ustensilesItemContainer);   
+                             document.querySelector(".ustensiles__search__icon").setAttribute('onClick',   'closeFilterUstensile()');                               
                                                         }
 
 
@@ -331,8 +300,12 @@ export function searchAndBuildPlats(event) {
 }}
 
 export function cardPlat(tabRecette){
-  tabRecette.forEach((element)=>{buildCardPlats(element);});
+  tabRecette.forEach((element)=>{
+    buildCardPlats(element);
+  });
 }
+
+
 export function getAllIngredients(recettes) {
   let tab_ingredients = new Array;
   recettes.forEach(elt => {
