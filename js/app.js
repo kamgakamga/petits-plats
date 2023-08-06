@@ -3,7 +3,7 @@ import { buildSearchForm,buildPartIngredients,
          cardPlat, getAllIngredients,
          getAllUstensils,getAllAppareils,buildFilterAppareils,
          buildPartUstensiles,buildFilterUstensiles, 
-         buildPartApareils,updateDropDown,
+         buildPartApareils,updateDropDown,buildArrayTags,
          updateFilterAppareils,updateFilterUstansiles} from "./helper.js";
 import { mainFilter, ingredientFilter , apareilsFilter, ustensilesFilter} from "./search.js";
 
@@ -20,15 +20,15 @@ tab_ustensiles  = getAllUstensils(recipes);
 tab_appareils   = getAllAppareils(recipes);
 
 // Construction de la structure de base de ma page index.
-const body = document.body;
-const header = document.createElement("header");
-const main = document.createElement("main");
-             main.classList.add("container", "main");
+// const body = document.body;
+// const header = document.createElement("header");
+// const main = document.createElement("main");
+            //  main.classList.add("container", "main");
 // const footer = document.createElement("footer");
 
 // Ajout des elements a la struture base
 // body.appendChild(header);
-body.appendChild(main);
+// body.appendChild(main);
 //body.appendChild(footer);
 // header.classList.add("d-flex");
 // header.classList.add("align-items-center");
@@ -44,21 +44,20 @@ body.appendChild(main);
 // buildSearchForm();
 
 
-const filterSection = document.createElement("section");
-filterSection.classList.add("filter-section");
-main.appendChild(filterSection);
-document.querySelector(".filter-section").style.display = 'flex';
+// const filterSection = document.createElement("section");
+// filterSection.classList.add("filter-section");
+// main.appendChild(filterSection);
+// document.querySelector(".filter-section").style.display = 'flex';
 // document.querySelector(".filter-section").style.position = 'absolute';
 buildDropDown(tab_ingredients);
 buildFilterAppareils(tab_appareils);
 buildFilterUstensiles(tab_ustensiles);
 
 
-let cardSection = document.createElement("section");
-main.appendChild(cardSection);
-let rows = document.createElement("div");
-cardSection.appendChild(rows);
-rows.classList.add("row","rowcard");
+// let cardSection = document.querySelector('.card-section');
+// let cardArticle = document.createElement("article");
+// cardSection.appendChild(cardArticle);
+// cardArticle.classList.add("section__article__recette-item","rowcard");
 cardPlat(recipes);
 
 // Sélectionnez l'élément de champ de recherche et la liste de résultats
@@ -84,7 +83,7 @@ globalSearch.addEventListener('input', function() {
     const regex = new RegExp(`${searchTerm.trim().toLowerCase()}`);
 
         searchResults = mainFilter(regex, recipes);
-                  rows.innerHTML="";
+                  document.querySelector('.card-section').innerHTML='';
 
                   if (searchResults.length < 1 ) {
                     // console.log("AUCUN ELEMENT TROUVE...");
@@ -119,9 +118,6 @@ const ingredientsSearch = document.querySelector(".ingredients__search__input");
 // const ingredientsSearch = document.getElementsByClassName("ingredients__search__input");
 
 //const searchResults = document.getElementById('searchResults');
-console.log('--------------------------------');
-console.log(ingredientsSearch);
-console.log('--------------------------------');
 // Ajoutez un écouteur d'événement pour la saisie de texte dans le champ de recherche
 ingredientsSearch.addEventListener('input', function() {
     // Récupérez le texte saisi dans le champ de recherche
@@ -194,13 +190,38 @@ ustensilesSearch.addEventListener('input', function() {
               updateFilterUstansiles(tab_ustensiles);
      }});
 
+
+
+
+
   //Ouverture et fermeture des dropdonw des filtres: ingredients
    let ingredients = document.querySelector(".ingredientss");
        ingredients.addEventListener('click',function(){
         console.log("Ouverture ingredient");
       document.querySelector(".ingredientss").style.display = 'none';  
       document.querySelector(".ingredients").style.display = 'inline-block';
+
+      
+
+      let apareils = document.querySelector(".apareils");
+      var apareilsDisplayValue = window.getComputedStyle(apareils).getPropertyValue("display");
+       if (apareilsDisplayValue === "inline-block" ) {
+        document.querySelector(".apareils").style.display = 'none';
+        document.querySelector(".apareilss").style.display = 'block';
+       }
+
+
+      let ustensiles = document.querySelector(".ustensiles");
+      var ustensilesDisplayValue = window.getComputedStyle(ustensiles).getPropertyValue("display");
+       if (ustensilesDisplayValue === "inline-block" ) {
+        document.querySelector(".ustensiles").style.display = 'none';
+        document.querySelector(".ustensiless").style.display = 'block';
+       }
+
 });
+
+
+
 
   //Ouverture et fermeture des dropdonw des filtres: apareils
    let apareils = document.querySelector('.apareilss');
@@ -208,6 +229,23 @@ ustensilesSearch.addEventListener('input', function() {
    apareils.addEventListener('click',function(){
       document.querySelector(".apareilss").style.display = 'none';  
       document.querySelector(".apareils").style.display = 'inline-block';
+
+
+      
+      let ustensiles = document.querySelector(".ustensiles");
+      var ustensilesDisplayValue = window.getComputedStyle(ustensiles).getPropertyValue("display");
+       if (ustensilesDisplayValue === "inline-block" ) {
+        document.querySelector(".ustensiles").style.display = 'none';
+        document.querySelector(".ustensiless").style.display = 'block';
+       }
+
+       
+       let ingredients = document.querySelector(".ingredients");
+       var ingredientsDisplayValue = window.getComputedStyle(ingredients).getPropertyValue("display");
+        if (ingredientsDisplayValue === "inline-block" ) {
+         document.querySelector(".ingredients").style.display = 'none';
+         document.querySelector(".ingredientss").style.display = 'block';
+        }
 });
 
   //Ouverture et fermeture des dropdonw des filtres: ustensiles
@@ -216,6 +254,23 @@ ustensilesSearch.addEventListener('input', function() {
       console.log("Ouverture ustensiles");
       document.querySelector(".ustensiless").style.display = 'none';  
       document.querySelector(".ustensiles").style.display = 'inline-block';
+
+
+
+      let apareils = document.querySelector(".apareils");
+      var apareilsDisplayValue = window.getComputedStyle(apareils).getPropertyValue("display");
+       if (apareilsDisplayValue === "inline-block" ) {
+        document.querySelector(".apareils").style.display = 'none';
+        document.querySelector(".apareilss").style.display = 'block';
+       }
+
+
+       let ingredients = document.querySelector(".ingredients");
+       var ingredientsDisplayValue = window.getComputedStyle(ingredients).getPropertyValue("display");
+        if (ingredientsDisplayValue === "inline-block" ) {
+         document.querySelector(".ingredients").style.display = 'none';
+         document.querySelector(".ingredientss").style.display = 'block';
+        }
 });
 
 const itemFilters = document.querySelectorAll('.ingredients__contain__item');
@@ -223,28 +278,34 @@ var arrayTags = [];
 var arrayTagsResult = [];
 var temp = [];
 
-// console.log(itemFilters);
+console.log(itemFilters);
 itemFilters.forEach((itemFilter) => {
   itemFilter.addEventListener('click', (event) => { 
-          console.log('click sur un item');
+
+    let results;
+          console.log('click sur un item 1');
           if (!arrayTags.includes(event.target.textContent)) {
             arrayTags.push(event.target.textContent);
           }
-        //  arrayTagsResult = buildArrayTags(arrayTags); 
+          arrayTagsResult = buildArrayTags(arrayTags); 
          for (let index = 0; index < arrayTagsResult.length; index++) {
           const element = arrayTagsResult[index];
           // rows.innerHTML="";
-          temp = recipes.filter((item)=>item.name.toLowerCase().includes(element.toLowerCase()) 
-          || item.description.toLowerCase().includes(element.toLowerCase()));
+          console.log("massaaaaaa");
+          // const reg = new RegExp(`${element}`);
+          const reg = new RegExp(`${element.trim().toLowerCase()}`);
+           results = mainFilter(reg, recipes);
+          // document.querySelector('.card-section').innerHTML='';
+         
          }
          
          // console.log(temp);
          
-         rows.innerHTML="";
+         document.querySelector('.card-section').innerHTML="";
          var cmpt = 0;
-         temp.forEach(e =>buildCardPlats(e));
+         results.forEach(e =>buildCardPlats(e));
           closeTags = document.querySelectorAll(".close-tags");
-          console.log(closeTags);
+          // console.log(closeTags);
           // closeTags.forEach((closeTag) =>{
           //   closeTag.addEventListener('click', (e) => {
           //   console.log('compteur:',e.target);

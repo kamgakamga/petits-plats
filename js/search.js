@@ -4,17 +4,14 @@ export function mainFilter(regex, recipes){
         let searchResults = [];       
 // ici on fait le filtre générale des récettes pour rechercher les recettes correspondant a l'expression entrer par l'utilisateur
 recipes.filter(recipe =>{  
-        if(regex.test(recipe.name)) {
+        if(regex.test(recipe.name.toLowerCase())) {
              searchResults.push(recipe);
-             console.log("toto");
-        } else if(regex.test(recipe.description)) {
+        } else if(regex.test(recipe.description.toLowerCase())) {
              searchResults.push(recipe);
-             console.log("tata");
         }else{
         recipe.ingredients.forEach((ingredient) => {
-          if (regex.test(ingredient)) {
+          if (regex.test(ingredient.ingredient.toLowerCase())) {
                 searchResults.push(recipe);
-                console.log("tato");
           }}
           );}} 
 );

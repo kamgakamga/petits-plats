@@ -1,4 +1,11 @@
+import { mainFilter } from "../js/search.js";
+
+
 const nomberOfWords = 100;
+var arrayTags = [];
+var arrayTagsResult = [];
+var temp = [];
+
 
 
 export function buildSearchForm(){
@@ -39,15 +46,16 @@ export function buildCardPlats(element) {
    }
 
    export function buildCardPlat(element,ingredientItem){
- let cardElement = document.createElement("div");
-   cardElement.classList.add("card", "col-4", "border-0", "p-2", "m-0");
+ let cardElement = document.createElement("article");
+    cardElement.classList.add("card","section__article__recette-item");
+  //  cardElement.classList.add("card");
    cardElement.innerHTML =`<div class="plat-image">
 
                             </div>
                             <div class="card-body">
                                        <div class="card-title-time row">
                                              <p class="col-8 plats-title">${element.name}</p>
-                                             <p class="col-4 plats-ingredients">
+                                             <p class="col-4 plats-times">
                                                       <i class="far fa-clock"></i><span><strong> ${element.time} min</strong></span>
                                              </p>
                                        </div>
@@ -60,7 +68,7 @@ export function buildCardPlats(element) {
                                              <p class="col-5 plats-descriptions">${buildTestToDisplay(element.description, nomberOfWords)}</p>
                                        </div>
                             </div>`;
-  document.querySelector(".rowcard").appendChild(cardElement);
+  document.querySelector('.card-section').appendChild(cardElement);
  }
 
  function buildIngredientsPlat(ingredients){
@@ -84,7 +92,7 @@ export function buildCardPlats(element) {
 
 
 export function updateDropDown(ingredients){
- 
+
   const element = document.querySelector(".ingredients__contain");
  
   if(element !== null) {
@@ -94,7 +102,51 @@ export function updateDropDown(ingredients){
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
     document.querySelector(".ingredients__contain").innerHTML = `${ingredientItem}`;
-      // document.querySelector(".ingredients__search__icon").addEventListener("click",closeFilter());                                                      
+    // const itemFilterss = document.querySelectorAll('.ingredients__contain__item');
+
+      // document.querySelector(".ingredients__search__icon").addEventListener("click",closeFilter());    
+      
+      
+
+      
+const itemFilters = document.querySelectorAll('.ingredients__contain__item');
+
+itemFilters.forEach((itemFilter) => {
+  itemFilter.addEventListener('click', (event) => { 
+          // console.log('click sur un item...12');
+          if (arrayTags.length > 0) {
+          if (!arrayTags.includes(event.target.textContent)) {
+            arrayTags.push(event.target.textContent);
+            console.log(arrayTags);
+          }
+          arrayTagsResult = buildArrayTags(arrayTags); 
+         for (let index = 0; index < arrayTagsResult.length; index++) {
+          const element = arrayTagsResult[index];
+          const regex = new RegExp(`${element.trim().toLowerCase()}`);
+          let d = mainFilter(regex,recipes);
+           updateDropDown(getAllIngredients(d));
+           console.log(mainFilter(regex,recipes));
+           document.querySelector('.card-section').innerHTML = '';
+           cardPlat(d);
+         }
+        } else{
+          console.log('click sur un item...12');
+          arrayTags.push(event.target.textContent);
+          console.log(arrayTags);
+          arrayTagsResult = buildArrayTags(arrayTags); 
+          for (let index = 0; index < arrayTagsResult.length; index++) {
+           const element = arrayTagsResult[index];
+           const regex = new RegExp(`${element.trim().toLowerCase()}`);
+           let d = mainFilter(regex,recipes);
+            updateDropDown(getAllIngredients(d));
+            console.log(mainFilter(regex,recipes));
+            document.querySelector('.card-section').innerHTML = '';
+            cardPlat(d);
+          }
+        }
+        })
+      });
+
 }}
 
 
@@ -133,13 +185,14 @@ export function updateFilterUstansiles(ustensiles){
 
 
 export function buildDropDown(ingredients){
-  const ingredientItemContainer = document.createElement("div");
+  const ingredientItemContainer = document.createElement("article");
         ingredientItemContainer.classList.add("filtre");
-    let  ingredientItem ="";
+    let ingredientItem ="";
     for(let i = 0; i< ingredients.length; i++) {
+      // onClick = \"buildSeletedIngredientTag()\" 
       ingredientItem += "<li class=\"ingredients__contain__item\">"+ingredients[i]+"</li>";
     }
-                                      ingredientItemContainer.innerHTML=` <span class="dropdown mr-2 mr-0 ingredientss btn btn-primary dropdown-toggle">
+                                      ingredientItemContainer.innerHTML=` <span class="dropdown mr-2 ingredientss btn btn-primary dropdown-toggle">
                                                                                    Ingredients
                                                                           </span>
                                                                           <div class="bg-primary mr-3 ingredients">
@@ -152,7 +205,33 @@ export function buildDropDown(ingredients){
                                                                                       </ul>
                                                                           </div>`;
             document.querySelector(".filter-section").appendChild(ingredientItemContainer);  
-            document.querySelector(".ingredients__search__icon").setAttribute('onClick','closeFilterIngredient()');                                   
+            document.querySelector(".ingredients__search__icon").setAttribute('onClick','closeFilterIngredient()');   
+
+      
+      
+const itemFilters = document.querySelectorAll('.ingredients__contain__item');
+
+itemFilters.forEach((itemFilter) => {
+  itemFilter.addEventListener('click', (event) => { 
+          console.log('click sur un item...11');
+          if (!arrayTags.includes(event.target.textContent)) {
+            arrayTags.push(event.target.textContent);
+            console.log(arrayTags);
+          }
+          arrayTagsResult = buildArrayTags(arrayTags); 
+         for (let index = 0; index < arrayTagsResult.length; index++) {
+          const element = arrayTagsResult[index];
+          const regex = new RegExp(`${element.toLowerCase()}`);
+          let d = mainFilter(regex,recipes);
+          updateDropDown(getAllIngredients(d));
+           console.log(mainFilter(regex,recipes));
+          //  document.querySelector('.section__article__recette-item').innerHTML = '';
+           document.querySelector('.card-section').innerHTML = '';
+           cardPlat(d);
+         }
+        })
+      });
+
 }
 
 export function buildPartIngredients(ingredients){
@@ -168,7 +247,7 @@ export function buildPartIngredients(ingredients){
 
 export function buildFilterAppareils(apareils){
     let  apareilsItem ="";
-    const apareilsItemContainer = document.createElement("div");
+    const apareilsItemContainer = document.createElement("article");
           apareilsItemContainer.classList.add("filtre");
     for(let i = 0; i< apareils.length; i++) {
       apareilsItem += "<li class=\"apareils__contain__item\">"+apareils[i]+"</li>";
@@ -202,7 +281,7 @@ export function buildPartApareils(apareils){
 
 export function buildFilterUstensiles(ustensiles){
     let  ustensilesItem ="";
-    const ustensilesItemContainer = document.createElement("div");
+    const ustensilesItemContainer = document.createElement("article");
     ustensilesItemContainer.classList.add("filtre");
     for(let i = 0; i< ustensiles.length; i++) {
       ustensilesItem += "<li class=\"ustensiles__contain__item\">"+ustensiles[i]+"</li>";
@@ -253,18 +332,36 @@ export function buildArrayTags(arrayTags) {
 }
 
 export function buildTagsList(arrayTagsResult) {
-  // console.log("Construction des tags en cours...");
+  console.log("Construction des tags en cours...");
   if (arrayTagsResult.length > 0) {
-    document.querySelector(".search-section").innerHTML ='';
+    document.querySelector('.tab__list').innerHTML ='';
     arrayTagsResult.forEach((tag) => {
        const pFilter = document.createElement('p');
        pFilter.classList.add("bg-primary","paragraphe-filter");
-       pFilter.innerHTML =`<span>${tag}</span>
-                           <i class="fas fa-times close-tags"></i>`
-    document.querySelector(".search-section").appendChild(pFilter);
-    });
+       pFilter.innerHTML =`<span>${tag}<i class="fas fa-times close-tags"></i></span>`
+    document.querySelector('.tab__list').appendChild(pFilter);
+
+   let  listOfTags = document.querySelectorAll('.close-tags');
+    
+   listOfTags.forEach(tag =>{
+        tag.addEventListener('click',function(e) {
+          const parent = e.target.parentNode;
+         
+      if(arrayTags.includes(parent.textContent)){
+           arrayTags.splice(arrayTags.indexOf(parent.textContent),1);
+           buildTagsList(arrayTags);
+        // console.log('tags fermé avec succes !!!',parent.textContent);
+         console.log(arrayTags);
+          if (!arrayTags.length > 0) {
+            updateDropDown(getAllIngredients(recipes));
+            cardPlat(recipes); 
+      }
+    } 
+   });}) });
+   }else{
+    document.querySelector('.tab__list').innerHTML ='';
    }
-  //  console.log("fin de la construction des tags...");
+
 }
 
 

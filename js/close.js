@@ -6,9 +6,11 @@
 
 
       function closeFilterApareil() {
-        console.log('fermeture apareils.');
+
         document.querySelector(".apareils").style.display = 'none';
         document.querySelector(".apareilss").style.display = 'block';
+
+
       }
 
       function closeFilterUstensile() {
