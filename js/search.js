@@ -13,7 +13,21 @@ recipes.filter(recipe =>{
           if (regex.test(ingredient.ingredient.toLowerCase())) {
                 searchResults.push(recipe);
           }}
-          );}} 
+          );}} );
+return searchResults;
+};
+
+export function mainFilter1(regex, recipes){
+        let searchResults = [];       
+// ici on fait le filtre générale des récettes pour rechercher les recettes correspondant a l'expression entrer par l'utilisateur
+recipes.filter(recipe =>{  
+        if(regex.test(recipe.name.toLowerCase())) {
+        } else if(regex.test(recipe.description.toLowerCase())) {
+        }else{
+        recipe.ingredients.forEach((ingredient) => {
+          if (regex.test(ingredient.ingredient.toLowerCase())) {
+                searchResults.push(recipe);
+          }});}} 
 );
 return searchResults;
 };

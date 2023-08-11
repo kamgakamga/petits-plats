@@ -4,7 +4,12 @@ import { mainFilter } from "../js/search.js";
 const nomberOfWords = 100;
 var arrayTags = [];
 var arrayTagsResult = [];
-var temp = [];
+
+var arrayTagsApareils = [];
+var arrayTagsResultApareils = [];
+
+var arrayTagsUstensiles = [];
+var arrayTagsResultUstensiles = [];
 
 
 
@@ -133,7 +138,8 @@ itemFilters.forEach((itemFilter) => {
           console.log('click sur un item...12');
           arrayTags.push(event.target.textContent);
           console.log(arrayTags);
-          arrayTagsResult = buildArrayTags(arrayTags); 
+          arrayTagsResult = buildArrayTags(arrayTags);
+
           for (let index = 0; index < arrayTagsResult.length; index++) {
            const element = arrayTagsResult[index];
            const regex = new RegExp(`${element.trim().toLowerCase()}`);
@@ -334,12 +340,12 @@ export function buildArrayTags(arrayTags) {
 export function buildTagsList(arrayTagsResult) {
   console.log("Construction des tags en cours...");
   if (arrayTagsResult.length > 0) {
-    document.querySelector('.tab__list').innerHTML ='';
+    document.querySelector('.tags-ingredients-contain').innerHTML ='';
     arrayTagsResult.forEach((tag) => {
        const pFilter = document.createElement('p');
        pFilter.classList.add("bg-primary","paragraphe-filter");
-       pFilter.innerHTML =`<span>${tag}<i class="fas fa-times close-tags"></i></span>`
-    document.querySelector('.tab__list').appendChild(pFilter);
+       pFilter.innerHTML =`<span class="tags__contain"><span class="tags__text">${tag}</span><i class="fas fa-times close-tags"></i></span>`
+    document.querySelector('.tags-ingredients-contain').appendChild(pFilter);
 
    let  listOfTags = document.querySelectorAll('.close-tags');
     
@@ -359,7 +365,100 @@ export function buildTagsList(arrayTagsResult) {
     } 
    });}) });
    }else{
-    document.querySelector('.tab__list').innerHTML ='';
+    document.querySelector('.tags-ingredients-contain').innerHTML ='';
+   }
+}
+
+
+
+export function buildArrayTagsAppareils(arrayTagsApareils) {
+  console.log("............///............");
+  console.log('arrayTagsApareils',arrayTagsApareils);
+  console.log("..............////..........");
+  buildTagsListAppareils(arrayTagsApareils);
+  return arrayTagsApareils;
+}
+
+export function buildTagsListAppareils(arrayTagsResultApareils) {
+   console.log("........................");
+     console.log('arrayTagsApareils',arrayTagsApareils);
+   console.log("........................");
+  if (arrayTagsResultApareils.length > 0) {
+
+    document.querySelector('.tags-apareils-contain').innerHTML ='';
+    arrayTagsResultApareils.forEach((tag) => {
+       const pFilter = document.createElement('p');
+       pFilter.classList.add("bg-success","paragraphe-filter");
+       pFilter.innerHTML =`<span class="tags__contain"><span class="tags__text">${tag}</span><i class="fas fa-times close-tags"></i></span>`
+    document.querySelector('.tags-apareils-contain').appendChild(pFilter);
+
+
+
+
+   let  listOfTags = document.querySelectorAll('.close-tags');
+    console.log('data',listOfTags);
+    console.log('data',arrayTagsResultApareils);
+
+
+   listOfTags.forEach(tag =>{
+        tag.addEventListener('click',function(e) {
+          const parent = e.target.parentNode;
+         console.log("suppression du tags appareils en cours...");
+         console.log(arrayTagsApareils,'blabla');
+      if(arrayTagsResultApareils.includes(parent.textContent)){
+        arrayTagsResultApareils.splice(arrayTagsResultApareils.indexOf(parent.textContent),1);
+           buildTagsListAppareils(arrayTagsResultApareils);
+        // console.log('tags fermé avec succes !!!',parent.textContent);
+         console.log(arrayTagsResultApareils);
+          if (!arrayTagsResultApareils.length > 0) {
+            updateFilterAppareils(getAllAppareils(recipes));
+            cardPlat(recipes); 
+      }
+    } 
+   });}) });
+   }else{
+    document.querySelector('.tags-apareils-contain').innerHTML ='';
+   }
+
+}
+
+
+
+
+export function buildArrayTagsUstensiles(arrayTags) {
+  buildTagsListUstensiles(arrayTags);
+  return arrayTags;
+}
+
+export function buildTagsListUstensiles(arrayTagsResult) {
+  console.log("Construction des tags en cours...");
+  if (arrayTagsResult.length > 0) {
+    document.querySelector('.tags-ustensiles-contain').innerHTML ='';
+    arrayTagsResult.forEach((tag) => {
+       const pFilter = document.createElement('p');
+       pFilter.classList.add("bg-danger","paragraphe-filter");
+       pFilter.innerHTML =`<span class="tags__contain"><span class="tags__text">${tag}</span><i class="fas fa-times close-tags"></i></span>`
+    document.querySelector('.tags-ustensiles-contain').appendChild(pFilter);
+
+   let  listOfTags = document.querySelectorAll('.close-tags');
+    
+   listOfTags.forEach(tag =>{
+        tag.addEventListener('click',function(e) {
+          const parent = e.target.parentNode;
+         
+      if(arrayTags.includes(parent.textContent)){
+           arrayTags.splice(arrayTags.indexOf(parent.textContent),1);
+           buildTagsListUstensiles(arrayTags);
+        // console.log('tags fermé avec succes !!!',parent.textContent);
+         console.log(arrayTags);
+          if (!arrayTags.length > 0) {
+            updateFilterUstansiles(getAllUstensils(recipes));
+            cardPlat(recipes); 
+      }
+    } 
+   });}) });
+   }else{
+    document.querySelector('.tags-ustensiles-contain').innerHTML ='';
    }
 
 }
